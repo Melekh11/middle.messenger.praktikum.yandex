@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        link(href="../../../src/components/button__back/button__back.css" rel="stylesheet")
+        link(href="../../components/sign_smt_form/sign_smt_form.css" rel="stylesheet")
+    body
+        include ../components/button__back/button__back
+        //div(class="container_form")
+        form(class="marg")
+            h2 Sign up
+            div
+                div
+                    label(for="first_name") короткое имя
+                    input(name="first_name", type="text", id="first_name", placeholder="short name")
+                div
+                    label(for="second_name") полное имя
+                    input(name="second_name", type="text", id="second_name" placeholder="full name")
+                div
+                    label(for="login") логин
+                    input(name="login", type="text", id="login" placeholder="login")
+
+                div
+                    label(for="email") почта
+                    input(name="email", type="text", id="email" placeholder="email")
+
+                div
+                    label(for="phone") телефон
+                    input(name="phone", type="text", id="phone" placeholder="phone")
+
+                div
+                    label(for="password") пароль
+                    input(name="password", type="text", id="password" placeholder="password")
+
+            div(class="column-group")
+                button(class="prime") Create profile

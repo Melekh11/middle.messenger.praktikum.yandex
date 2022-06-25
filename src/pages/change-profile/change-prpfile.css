@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+img {
+  margin: auto;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}

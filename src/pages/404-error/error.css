@@ -1,0 +1,29 @@
+.line1 {
+  text-align: center;
+  font-family: normal, sans-serif;
+  font-size: 48px;
+}
+.line2 {
+  text-align: center;
+  font-family: normal, sans-serif;
+  font-size: 36px;
+}
+.line3 {
+  text-align: center;
+  font-family: normal, sans-serif;
+  font-size: 24px;
+  color: #3369F3;
+  text-decoration: none;
+}
+h1 {
+  text-align: center;
+  font-family: normal, sans-serif;
+  font-size: 80px;
+}
+div.inside {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}

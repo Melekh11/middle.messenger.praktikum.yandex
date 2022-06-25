@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link href="../components/button__back/button__back.css" rel="stylesheet">
+    <link href="../components/sign_smt_form/sign_smt_form.css" rel="stylesheet">
+    <link href="change-prpfile.css" rel="stylesheet">
+    <!--link(href="../../components/sign_smt_form/sign_smt_form.css")-->
+  </head>
+  <body>
+    <button class="button__back" type="button" onclick="location.href = '../index.html';">←</button>
+    <div class="container">
+      <form>
+        <div>
+          <label for="first_name">короткое имя</label>
+          <input name="first_name" type="text" id="first_name" placeholder="Мати">
+        </div>
+        <div>
+          <label for="second_name">полное имя</label>
+          <input name="second_name" type="text" id="second_name" placeholder="Матвей">
+        </div>
+        <div>
+          <label for="login">логин</label>
+          <input name="login" type="text" id="login" placeholder="Melekh">
+        </div>
+        <div>
+          <label for="email">почта</label>
+          <input name="email" type="text" id="email" placeholder="melekh@gmail.com">
+        </div>
+        <div>
+          <label for="phone">логин</label>
+          <input name="phone" type="text" id="phone" placeholder="8 (926) 191 43 25">
+        </div>
+        <div class="column-group">
+          <button class="prime">Сохранить данные</button>
+        </div>
+      </form>
+      <form><img src="../static/ava.png" alt="аватар">
+        <input type="file" accept=".png, .jpg, .jpeg">
+        <div class="column-group">
+          <button class="prime">сохранить аватар</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

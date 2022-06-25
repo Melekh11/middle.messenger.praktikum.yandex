@@ -1,0 +1,100 @@
+@cool-color: #80BDDF;
+@nice-bg: #F3F3F3;
+@blind-color: rgba(0, 0, 0, 0.39);
+@img-size: 80px;
+@border: solid 2px @cool-color;
+
+
+.text{
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.main_page{
+  display: flex;
+  height: 100vh;
+}
+
+.user-nav{
+  flex-basis: 25%;
+  border-right: @border
+}
+
+.user-bar{
+  border-bottom: @border
+}
+
+.user-bar a.tools{
+  .text;
+  color: rgba(0, 0, 0, 0.51);
+  text-decoration: none;
+  cursor: pointer;
+  &:hover{
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.user-bar input{
+  margin: 10px;
+  border-radius: 17px;
+  border: none;
+  background-color: @nice-bg;
+  text-align: center;
+  width: 80%;
+  min-height: 30px;
+}
+
+img{
+  align-self: center;
+  height: @img-size;
+  width: @img-size;
+  border-radius: 50%;
+  margin-left: 30px;
+}
+
+.inner-user{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: @border;
+  padding: 10px;
+}
+
+.inner-user-text{
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 50px;
+  height: 100%;
+}
+
+a.to-user{
+  .text;
+  //align-self: center;
+  color: black;
+  text-decoration: none;
+  font-size: 30px;
+  line-height: 29px;
+  cursor: pointer;
+}
+
+.last-word{
+  .text;
+  //align-self: center;
+  display: block;
+  font-size: 16px;
+  line-height: 19px;
+  color: @blind-color;
+}
+
+h3{
+  .text;
+  margin: auto;
+  font-size: 40px;
+  line-height: 29px;
+}
+

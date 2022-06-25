@@ -1,0 +1,31 @@
+.font-sizer(@size){
+  text-align: center;
+  font-family: normal, sans-serif;
+  font-size: @size;
+}
+
+.line1{
+  .font-sizer(48px);
+}
+
+.line2{
+  .font-sizer(36px);
+}
+
+.line3{
+  .font-sizer(24px);
+  color: #3369F3;
+  text-decoration: none;
+}
+
+h1{
+  .font-sizer(80px);
+}
+
+div.inside{
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}

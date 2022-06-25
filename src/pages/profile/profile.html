@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link href="../components/button__back/button__back.css" rel="stylesheet">
+    <link href="../components/sign_smt_form/sign_smt_form.css" rel="stylesheet">
+    <link href="profile.css" rel="stylesheet">
+  </head>
+  <body>
+    <button class="button__back" type="button" onclick="location.href = '../index.html';">←</button>
+    <div class="inner-profile">
+      <div class="center">
+        <div>
+          <label for="login">логин</label>
+          <input name="login" type="text" id="login" placeholder="Melek" disabled>
+        </div>
+        <div>
+          <label for="first_name">короткое имя</label>
+          <input name="first_name" type="text" id="first_name" placeholder="Мати" disabled>
+        </div>
+        <div>
+          <label for="second_name">полное имя</label>
+          <input name="second_name" type="text" id="second_name" placeholder="Матвей" disabled>
+        </div>
+        <div>
+          <label for="email">почта</label>
+          <input name="email" type="text" id="email" placeholder="melekh@gmail.com" disabled>
+        </div>
+        <div>
+          <label for="phone">телефон</label>
+          <input name="phone" type="text" id="phone" placeholder="8 (926) 191 43 25" disabled>
+        </div>
+      </div>
+      <div class="center"><img src="../static/ava.png" alt="аватар">
+        <div class="margin">
+          <p>Мати, Матвей</p>
+          <p>Melekh</p>
+        </div><a class="blue" onclick="location.href = '../change-profile/change-profile.html';">изменить данные профиля</a><a class="blue" onclick="location.href = '../change-profile-password/new-password.html';">изменить пароль</a><a class="red" onclick="location.href = '../index.html';">выйти</a>
+      </div>
+    </div>
+  </body>
+</html>

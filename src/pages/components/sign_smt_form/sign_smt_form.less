@@ -1,0 +1,102 @@
+@dark-color: #818181;
+@cool-color: #7EBCDF;
+@almost-white: #FDFDFD;
+@bg-color: rgba(217, 217, 217, 0.35);
+@db-radius: 32px;
+@stand-height: 50px;
+@def-color: rgb(98, 111, 132);
+
+
+div.container_form{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+
+form{
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  background-color: @bg-color;
+  border-radius: @db-radius;
+  padding: @db-radius;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+  //max-height: 700px;
+  width: 40%;
+  max-width: 400px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+form h2{
+  text-align: center;
+  font-family: Inter, sans-serif;
+}
+
+div.column-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: @db-radius;
+  align-items: center;
+}
+
+form button{
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  margin: 20px;
+  align-self: center;
+  width: 70%;
+  min-height: @stand-height;
+}
+
+form button.prime{
+  background-color: @almost-white;
+  color: @cool-color;
+  border-radius: @db-radius;
+}
+
+form button.secundus{
+  background-color: @cool-color;
+  color: black;
+  border-radius: @db-radius;
+}
+
+label{
+  margin-top: 15px;
+  font-family: Inter, sans-serif;
+  display: block;
+  text-align: left;
+  font-size: 16px;
+  color: @dark-color;
+}
+
+input{
+  width: 80%;
+  font-size: 20px;
+  margin: 15px;
+  height: 30px;
+  background: none;
+  text-align: left;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid @cool-color;
+}
+
+div.column-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 15px;
+  align-items: center;
+}

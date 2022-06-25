@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        link(href="../../../src/components/button__back/button__back.css" rel="stylesheet")
+        link(href="../../components/sign_smt_form/sign_smt_form.css" rel="stylesheet")
+        link(href="./change-prpfile.css" rel="stylesheet")
+        //link(href="../../components/sign_smt_form/sign_smt_form.css")
+    body
+        include ../components/button__back/button__back
+        div(class="container")
+            form
+                div
+                    label(for="first_name") короткое имя
+                    input(name="first_name", type="text", id="first_name", placeholder="Мати")
+                div
+                    label(for="second_name") полное имя
+                    input(name="second_name", type="text", id="second_name", placeholder="Матвей")
+                div
+                    label(for="login") логин
+                    input(name="login", type="text", id="login", placeholder="Melekh")
+                div
+                    label(for="email") почта
+                    input(name="email", type="text", id="email", placeholder="melekh@gmail.com")
+                div
+                    label(for="phone") логин
+                    input(name="phone", type="text", id="phone", placeholder="8 (926) 191 43 25")
+
+                div(class="column-group")
+                    button(class="prime") Сохранить данные
+
+            form
+                img(src="../../../static/ava.png" alt="аватар")
+                input(type="file" accept=".png, .jpg, .jpeg")
+                div(class="column-group")
+                    button(class="prime") сохранить аватар
