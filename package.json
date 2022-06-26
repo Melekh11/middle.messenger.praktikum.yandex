@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "node_modules/.bin/parcel src/pages/main-page.html",
-    "start": "parcel src/pages/main-page/main-page.html --port 3000"
+    "start": "parcel src/pages/index.html --port 3000"
   },
   "keywords": [],
   "author": "",
