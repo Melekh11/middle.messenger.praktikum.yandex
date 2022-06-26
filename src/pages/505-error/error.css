@@ -1,21 +1,21 @@
-.line1 {
+.line-error-oops {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 48px;
 }
-.line2 {
+.line-error-sorry {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 36px;
 }
-.line3 {
+.line-error-back {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 24px;
   color: #3369F3;
   text-decoration: none;
 }
-h1 {
+h1.line-error-505 {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 80px;

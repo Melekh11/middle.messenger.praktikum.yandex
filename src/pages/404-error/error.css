@@ -1,26 +1,26 @@
-.line1 {
+.line-error-oops {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 48px;
 }
-.line2 {
+.line-error-wrong-place {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 36px;
 }
-.line3 {
+.line-error-back-to-chats {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 24px;
   color: #3369F3;
   text-decoration: none;
 }
-h1 {
+h1.line-error-404 {
   text-align: center;
   font-family: normal, sans-serif;
   font-size: 80px;
 }
-div.inside {
+div.error-inside-block {
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;

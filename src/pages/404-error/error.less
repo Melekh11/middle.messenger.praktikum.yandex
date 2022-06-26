@@ -1,28 +1,30 @@
+@blue: #3369F3;
+
 .font-sizer(@size){
   text-align: center;
   font-family: normal, sans-serif;
   font-size: @size;
 }
 
-.line1{
+.line-error-oops{
   .font-sizer(48px);
 }
 
-.line2{
+.line-error-wrong-place{
   .font-sizer(36px);
 }
 
-.line3{
+.line-error-back-to-chats{
   .font-sizer(24px);
-  color: #3369F3;
+  color: @blue;
   text-decoration: none;
 }
 
-h1{
+h1.line-error-404{
   .font-sizer(80px);
 }
 
-div.inside{
+div.error-inside-block{
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
