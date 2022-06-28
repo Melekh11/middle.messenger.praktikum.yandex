@@ -7,6 +7,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("/", function (req, res) {
+    res.setHeader('Content-Type', 'application/json');res.setHeader('Content-Type', 'application/json');
     res.status(200).sendFile(__dirname + 'index.html/')
 });
 
