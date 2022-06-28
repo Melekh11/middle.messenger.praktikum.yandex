@@ -2,10 +2,9 @@ doctype html
 html(lang="en")
     head
         meta(charset="UTF-8")
-        link(href="../../../src/components/button__back/button__back.css" rel="stylesheet")
-        link(href="../../components/sign_smt_form/sign_smt_form.css" rel="stylesheet")
-        link(href="./change-profile.css" rel="stylesheet")
-        //link(href="../../components/sign_smt_form/sign_smt_form.css")
+        link(href="../../../src/components/button__back/button__back.less" rel="stylesheet")
+        link(href="../../components/sign_smt_form/sign_smt_form.less" rel="stylesheet")
+        link(href="change-profile.less" rel="stylesheet")
     body
         include ../components/button__back/button__back
         div(class="container")
@@ -30,7 +29,7 @@ html(lang="en")
                     button(class="prime") Сохранить данные
 
             form
-                img(src="../../../static/ava.png" alt="аватар")
+                img(src="../static/ava.png" alt="аватар")
                 input(type="file" accept=".png, .jpg, .jpeg")
                 div(class="column-group")
                     button(class="prime") сохранить аватар

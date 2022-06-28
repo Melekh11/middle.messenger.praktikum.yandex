@@ -2,30 +2,31 @@ doctype html
 html(lang="en")
     head
         meta(charset="UTF-8")
-        link(href="./main-page.css" rel="stylesheet")
+        link(href="main-page.less" rel="stylesheet")
+
     body
         div(class="main_page")
             div(class="user-nav")
                 div(class="user-bar")
-                    a(class="tools" href="../profile/profile.pug") Настройки пользователя
+                    a(class="tools" href="profile/profile.pug") Настройки пользователя
                     input(class="search_contact" placeholder="поиск чата🔍")
 
                 div(class="inner-user")
-                    img(src="../../../static/ava.png" alt="аватар")
+                    img(src="static/ava.png" alt="аватар")
                     div(class="inner-user-text")
-                        a(class="to-user" href="../404-error/404-error.pug") Саша
+                        a(class="to-user" href="404-error/404-error.pug") Саша
                         label(class="last-word") пошли гулять
 
                 div(class="inner-user")
-                    img(src="../../../static/ava1.png" alt="аватар")
+                    img(src="static/ava1.png" alt="аватар")
                     div(class="inner-user-text")
-                        a(class="to-user" href="../404-error/404-error.pug") Паша
+                        a(class="to-user" href="404-error/404-error.pug") Паша
                         label(class="last-word") гулять!
 
                 div(class="inner-user")
-                    img(src="../../../static/ava2.png" alt="аватар")
+                    img(src="static/ava2.png" alt="аватар")
                     div(class="inner-user-text")
-                        a(class="to-user" href="../505-error/505-error.pug") Маша
+                        a(class="to-user" href="505-error/505-error.pug") Маша
                         label(class="last-word") ну выйди(
 
             p(class="start-talk") выберите чат и начните переписку!
