@@ -2,13 +2,13 @@ doctype html
 html(lang="en")
     head
         meta(charset="UTF-8")
-        link(href="../../../src/components/button__back/button__back.less" rel="stylesheet")
-        link(href="../../components/sign_smt_form/sign_smt_form.less" rel="stylesheet")
+        link(href="../components/button__back/button__back.less" rel="stylesheet")
+        link(href="../components/sign_smt_form/sign_smt_form.less" rel="stylesheet")
         link(href="change-profile.less" rel="stylesheet")
     body
         include ../components/button__back/button__back
         div(class="container")
-            form
+            form(class="max-height-form-data")
                 div
                     label(for="first_name") короткое имя
                     input(name="first_name", type="text", id="first_name", placeholder="Мати")
@@ -28,7 +28,7 @@ html(lang="en")
                 div(class="column-group")
                     button(class="prime") Сохранить данные
 
-            form
+            form(class="max-height-form-ava")
                 img(src="../static/ava.png" alt="аватар")
                 input(type="file" accept=".png, .jpg, .jpeg")
                 div(class="column-group")
