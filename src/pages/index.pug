@@ -12,21 +12,42 @@ html(lang="en")
                     input(class="search_contact" placeholder="поиск чата🔍")
 
                 div(class="inner-user")
-                    img(src="./static/ava.png" alt="аватар")
+                    img(class="ava-chat" src="./static/ava.png" alt="аватар")
                     div(class="inner-user-text")
                         a(class="to-user" href="./404-error/404-error.pug") Саша
                         label(class="last-word") пошли гулять
 
                 div(class="inner-user")
-                    img(src="./static/ava1.png" alt="аватар")
+                    img( class="ava-chat" src="./static/ava1.png" alt="аватар")
                     div(class="inner-user-text")
                         a(class="to-user" href="./404-error/404-error.pug") Паша
                         label(class="last-word") гулять!
 
                 div(class="inner-user")
-                    img(src="static/ava2.png" alt="аватар")
+                    img(class="ava-chat" src="static/ava2.png" alt="аватар")
                     div(class="inner-user-text")
                         a(class="to-user" href="./505-error/505-error.pug") Маша
                         label(class="last-word") ну выйди(
 
-            p(class="start-talk") выберите чат и начните переписку!
+            //p(class="start-talk") выберите чат и начните переписку!
+
+
+            div(class="chat")
+                div
+                    header(class="header-index")
+                        h1(class="name-chat") Сашенька
+                        button(class="index-menu-btn")
+                    hr
+
+                div(class="body-chat")
+                    div
+
+
+                div
+                    hr
+                    footer(class="footer-index")
+                        button(class="index-attach-btn")
+                        input(class="index-input-message" name="message" type="text")
+                        button(class="index-send-btn") →
+
+        script(src="./index.ts")

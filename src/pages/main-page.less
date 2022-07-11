@@ -1,7 +1,9 @@
 @cool-color: #80BDDF;
+@bg-color: #DFDEDE;
 @nice-bg: #F3F3F3;
 @blind-color: rgba(0, 0, 0, 0.39);
 @img-size: 80px;
+@btn-size: 40px;
 @border: solid 2px @cool-color;
 
 
@@ -48,7 +50,7 @@
   min-height: 30px;
 }
 
-img{
+.ava-chat{
   align-self: center;
   height: @img-size;
   width: @img-size;
@@ -96,5 +98,95 @@ a.to-user{
   margin: auto;
   font-size: 40px;
   line-height: 29px;
+}
+
+.focused-chat{
+  background-color: @bg-color;
+}
+
+hr{
+  width: 95%;
+  border: 1px @cool-color solid;
+}
+
+.header-index{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+  padding: 15px;
+}
+
+.header-index .name-chat{
+  .text;
+  margin-left: 15px;
+  font-size: 3em;
+}
+
+.header-index .index-menu-btn{
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  font-size: 3em;
+  width: 76px;
+  height: 60px;
+  background-image: url("./static/menu icon.png");
+
+}
+
+.chat{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.body-chat{
+  flex-grow: 1;
+}
+
+.footer-index{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+
+}
+
+.index-input-message{
+  flex-grow: 1;
+  border-radius: 30px;
+  height: 25px;
+  border: none;
+  background-color: @bg-color;
+  padding: 10px;
+  margin: 10px;
+  .text;
+  text-align: left;
+  font-size: 1.2em;
+}
+
+.index-attach-btn{
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  background-size: @btn-size;
+  background-repeat: no-repeat;
+  background-image: url("./static/paper-clip-img.svg");
+  height: @btn-size;
+  width: @btn-size;
+}
+
+.index-send-btn{
+  font-size: 24px;
+  cursor: pointer;
+  width: @btn-size;
+  height: @btn-size;
+  background-color: @cool-color;
+  border-radius: 50%;
+  border: 0;
+  text-align: center;
+  color: black;
+  &:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
 }
 

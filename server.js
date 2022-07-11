@@ -7,8 +7,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("/", function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).sendFile(__dirname + 'index.html')
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).sendFile(__dirname + "index.html")
     // но почему-то не проходит один из тестов программы, помогите пожалуйста :(
 
     // а ещё не все страницы переносятся в дист, переносятся только те, на которые есть
