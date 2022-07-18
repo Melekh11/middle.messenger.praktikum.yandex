@@ -2,4 +2,4 @@
 ссылка на netliy: https://luminous-monstera-f9065b.netlify.app/
 
 в проекте использовался шаблонизатор pug, в качестве препроцессора css - less
-проект запускается 
+проект запускается через скрипт npm run start 
