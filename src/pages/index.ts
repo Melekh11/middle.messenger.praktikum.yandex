@@ -20,8 +20,8 @@ for (let i = 0; i < arrayChats.length; i++) {
 }
 
 let attach = document.querySelector(".index-attach-btn")
-attach.addEventListener("click", function () {
-    if (attachCount % 2 === 0) {
-
-    }
-})
+// attach.addEventListener("click", function () {
+//     if (attachCount % 2 === 0) {
+//
+//     }
+// })

@@ -1,56 +1,68 @@
-import Element from "../element";
-const pug =  require("pug");
+import Block from "../core/Block";
+import {compile} from "pug";
+import "./style.less"
+import "../../index.less"
+// @ts-ignore
+import profileTemplate from "./template.pug"
+// @ts-ignore
+import render from "../../utils/core/render"
+import ErrorPage from "../../pages/errors/error"
+import Input from "../../components/input/input";
 
 
-const profileTemplate = `
-div #{userName}
-#{button}`;
+const input = new Input({
+    textLabel: "введите строку",
+    inputClass: "inlineText",
+    inputType: "text",
+    inputName: "str",
+    isError: true,
+    errorText: "ошибочка!",
+    inputPlaceholder: "пишите",
+    inputValue: "luyg"
+});
 
-class UserProfile extends Element {
+render("#root", input);
+
+
+class Button extends Block {
+    constructor(props) {
+        super("div", {...props});
+    }
+
     render() {
-        return pug.render(profileTemplate, { userName: this.props.userName});
+        return this.compile("button #{text}", {
+            text: this.props.text
+        });
     }
 }
 
-class Button extends Element {
+class UserProfile extends Block {
+
     constructor(props) {
-        // Создаём враппер дом-элемент button
-        super("button", props);
+
+        super('div', {
+            ...props,
+            chatList: ["<div>kfjf</div>", "<div>kfjf</div>", "<div>kfjf</div>"]
+        })
     }
+
+    // Создание кнопки лучше вынести в конструктор, чтобы не делать это при каждом рендере
+
 
     render() {
-        // В проекте должен быть ваш собственный шаблонизатор
-
-        return pug.render("div #{text}", this.props);
+        return this.compile(profileTemplate, {
+            chatList: this.props.chatList
+        });
     }
+
 }
 
 function render(query, block) {
     const root = document.querySelector(query);
+
     root.appendChild(block.getContent());
     return root;
 }
 
-const button = new Button({
-    text: 'Click me',
-});
 
-
-const profile = new UserProfile("div", {
-    button:  new Button({text: "change me!"}),
-    userName: 'John Doe',
-});
-
-render("body", profile); // npm run build-test покажет что получается криво
-
-
-// наглядный пример, вместо любого значения на месте #{button} pug для себя найдёт название тега
-const profileTemplate1 = `
-biv
-    p(class="123") #{username}
-    #{button}`;
-
-
-let a = pug.render(profileTemplate1, {className: "123", button: 789});
-console.log(a); // <biv> <p class="123"> 456 </p> <789> </789> </biv>
-
+render("body", new UserProfile({}))

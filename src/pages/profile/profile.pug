@@ -1,40 +1,19 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        link(href="../components/button__back/button__back.less" rel="stylesheet")
-        link(href="../components/sign_smt_form/sign_smt_form.less" rel="stylesheet")
-        link(href="profile.less" rel="stylesheet")
-    body
-        include ../components/button__back/button__back
-        div(class="inner-profile")
-            div(class="center")
-                div
-                    label(for="login") логин
-                    input(name="login" type="text" id="login" placeholder="Melek" disabled)
-                div
-                    label(for="first_name") короткое имя
-                    input(name="first_name" type="text" id="first_name" placeholder="Мати" disabled)
-                div
-                    label(for="second_name") полное имя
-                    input(name="second_name" type="text" id="second_name" placeholder="Матвей" disabled)
-                div
-                    label(for="email") почта
-                    input(name="email" type="text" id="email" placeholder="melekh@gmail.com" disabled)
-                div
-                    label(for="phone") телефон
-                    input(name="phone" type="text" id="phone" placeholder="8 (926) 191 43 25" disabled)
+div
+    != btnBack
+    div(class="inner-profile")
+        div(class="center")
+            != inputLogin
+            != inputShortName
+            != inputFullName
+            != inputEmail
+            != inputPhone
 
-            div(class="center")
-                img(src="../static/ava.png" alt="аватар")
-                div(class="margin")
-                    p Мати, Матвей
-                    p Melekh
-                a(class="blue" href="../change-profile/change-profile.pug") изменить данные профиля
-                a(class="blue" href="../change-profile-password/new-password.pug") изменить пароль
-                a(class="red" href='../index.pug') выйти
-
-
-
-
-
+        div(class="center")
+            img(src=urlIm alt="аватар")
+            // "../static/ava.png"
+            div(class="margin")
+                p #{shortName}, #{fullName}
+                p #{login}
+            a(class="blue" onclick="window.renderPage('changeProfile')") изменить данные профиля
+            a(class="blue" onclick="window.renderPage('changePassword')") изменить пароль
+            a(class="red" onclick="window.renderPage('error-500')") выйти
