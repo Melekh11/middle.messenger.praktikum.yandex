@@ -1,30 +1,29 @@
 function ProxyProps(props: any) {
-    return new Proxy(props, {
-            get(target: object, prop: string) {
-                if (prop.startsWith("_")) {
-                    throw new Error(`нет доступа к параметру ${prop}`);
-                }
-                const value = target[prop];
-                return typeof value === "function" ? value.bind(target) : value;
-            },
+  return new Proxy(props, {
+    get(target: object, prop: string) {
+      if (prop.startsWith("_")) {
+        throw new Error(`нет доступа к параметру ${prop}`);
+      }
+      const value = target[prop];
+      return typeof value === "function" ? value.bind(target) : value;
+    },
 
-            set(target: object, prop: string, value: unknown) {
-                if (prop.startsWith('_')) {
-                    throw new Error('Нет прав');
-                }
-                target[prop] = value;
-                return true;
-            },
+    set(target: object, prop: string, value: unknown) {
+      if (prop.startsWith("_")) {
+        throw new Error("Нет прав");
+      }
+      target[prop] = value;
+      return true;
+    },
 
-            deleteProperty(target: object, prop: string) {
-                if (prop.startsWith('_')) {
-                    throw new Error('Нет прав');
-                }
-                delete target[prop];
-                return true;
-            }
-        }
-    )
+    deleteProperty(target: object, prop: string) {
+      if (prop.startsWith("_")) {
+        throw new Error("Нет прав");
+      }
+      delete target[prop];
+      return true;
+    },
+  });
 }
 
-export {ProxyProps as default}
+export { ProxyProps as default };
