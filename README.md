@@ -3,4 +3,4 @@
 ссылка на pull request: https://github.com/Melekh11/middle.messenger.praktikum.yandex/pull/2#partial-pull-merging
 
 в проекте использовался шаблонизатор pug, в качестве препроцессора css - less
-проект запускается 
+проект запускается через скрипт npm run start 
