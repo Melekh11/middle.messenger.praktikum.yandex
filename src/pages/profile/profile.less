@@ -1,57 +1,56 @@
-@dark-color: #818181;
-@img-size: 400px;
+@import "../../static/constants";
 
-.inner-profile{
+.inner-profile {
   height: 100vh;
   display: flex;
   justify-content: space-around;
 }
 
-img{
+img {
   border-radius: 50%;
-  width: @img-size;
-  height: @img-size;
+  width: @imgProfileSize;
+  height: @imgProfileSize;
   margin: auto;
 }
 
-.center{
+.center {
   display: flex;
   flex-direction: column;
   margin: auto;
 }
 
-.text{
-  font-family: 'Inter', sans-serif;
+.text {
+  font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 400;
   text-align: center;
 }
 
-p{
+p {
   font-size: 32px;
   line-height: 39px;
   margin: 5px;
-  .text
+  .text;
 }
 
-a.blue{
+a.blue {
   cursor: pointer;
   text-decoration: none;
-  color: #3369F3;
+  color: @blue;
   font-size: 24px;
   line-height: 29px;
-  .text
+  .text;
 }
 
-a.red{
+a.red {
   cursor: pointer;
   text-decoration: none;
   color: red;
   font-size: 24px;
   line-height: 29px;
-  .text
+  .text;
 }
 
-.margin{
+.margin {
   margin: 20px;
 }

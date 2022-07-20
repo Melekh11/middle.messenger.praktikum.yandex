@@ -1,35 +1,17 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        link(href="../components/button-back/button-back.less" rel="stylesheet")
-        link(href="../components/sign-smt-form/sign-smt-form.less" rel="stylesheet")
-        link(href="change-profile.less" rel="stylesheet")
-    body
-        include ../components/button-back/button-back
-        div(class="container")
-            form(class="max-height-form-data")
-                div
-                    label(for="first_name") короткое имя
-                    input(name="first_name", type="text", id="first_name", placeholder="Мати")
-                div
-                    label(for="second_name") полное имя
-                    input(name="second_name", type="text", id="second_name", placeholder="Матвей")
-                div
-                    label(for="login") логин
-                    input(name="login", type="text", id="login", placeholder="Melekh")
-                div
-                    label(for="email") почта
-                    input(name="email", type="text", id="email", placeholder="melekh@gmail.com")
-                div
-                    label(for="phone") логин
-                    input(name="phone", type="text", id="phone", placeholder="8 (926) 191 43 25")
+div
+    != btnBack
+    div(class="container")
+        form(class="max-height-form-data")
+            != inputFirstName
+            != inputSecondName
+            != inputLogin
+            != inputEmail
+            != inputPhone
+            div(class="column-group")
+                != sbmButtonData
 
-                div(class="column-group")
-                    button(class="prime") Сохранить данные
-
-            form(class="max-height-form-ava")
-                img(src="../static/ava.png" alt="аватар")
-                input(type="file" accept=".png, .jpg, .jpeg")
-                div(class="column-group")
-                    button(class="prime") сохранить аватар
+        form(class="max-height-form-ava")
+            img(src=urlAva alt="аватар")
+            input(type="file" accept=".png, .jpg, .jpeg")
+            div(class="column-group")
+                != sbmButtonImage

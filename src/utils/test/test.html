@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./test.ts"></script>
+    <script>
+      let div = document.createElement("div");
+      document.querySelector("body").appendChild(div);
+      div.innerHTML =
+        '<input class="inlineText" autofocus type="text" name="str" placeholder="libyr" id="iuyt" value="iuogyfc">';
+      div.addEventListener("focusin", (event) => {
+        event.target.style.border = "2px solid red";
+      });
+      div.addEventListener("focusout", (event) => {
+        event.target.style.border = "1px solid black";
+      });
+    </script>
+  </body>
+</html>

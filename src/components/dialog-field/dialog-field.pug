@@ -1,0 +1,42 @@
+if dialogChosen === true
+    div(class="chat")
+        div
+            header(class="header-chat-field")
+                h1(class="name-chat") #{userName}
+                button(class="index-menu-btn" type="button")
+            hr
+        div(class="body-chat")
+            div
+            for message in messageFlow
+                if message[0]
+                    p(style="color: red") #{message[1]}
+                else
+                    p(style="color: blue") #{message[1]}
+        div
+            hr
+            footer(class="footer-chat-field")
+                button(class="index-attach-btn" type="button")
+                != inputMessage
+                button(class="index-send-btn" type="button") →
+else
+    p(class="start-talk") выберите чат и начните переписку!
+
+    div(class="chat" style="display: none")
+        div
+            header(class="header-chat-field")
+                h1(class="name-chat") #{userName}
+                button(class="index-menu-btn" type="button")
+            hr
+        div(class="body-chat")
+            div
+            for message in messageFlow
+                if message[0]
+                    p(style="color: red") #{message[1]}
+                else
+                    p(style="color: blue") #{message[1]}
+        div
+            hr
+            footer(class="footer-chat-field")
+                button(class="index-attach-btn" type="button")
+                != inputMessage
+                button(class="index-send-btn" type="button") →
