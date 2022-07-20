@@ -25,22 +25,13 @@ export default class Input extends Block {
                 }
                 p.style.display = "none";
             });
-            console.log(
-                "created listener on input",
-                this._element.querySelector("input")
-            );
+
             el.addEventListener("blur", () => {
                 if (!this.getContent()) {
                     return;
                 }
-                if (!this.getContent().querySelector("input")) {
-                    return;
-                }
                 const content = this.getContent().querySelector("input");
                 if (!content) {
-                    return;
-                }
-                if (!content.value) {
                     return;
                 }
                 let ans: { errorText: string; error: boolean } = checkError(
