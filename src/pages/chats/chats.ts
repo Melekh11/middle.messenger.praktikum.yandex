@@ -48,6 +48,7 @@ export default class ChatsPage extends Block {
   }
 
   compile(template: string, props: TProps) {
+    console.log("compile started");
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
@@ -65,16 +66,24 @@ export default class ChatsPage extends Block {
           "</div>"
       );
     });
+    if (!fragment){
+      return;
+    }
+    console.log(fragment);
     fragment.innerHTML = compile(template)({
       ...propsAndStubs,
       chatList: readyListOfCards,
     });
 
     Object.values(this.children).forEach((child) => {
+      // @ts-ignore
       const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
       stub.replaceWith(child.getContent());
     });
-
+    // @ts-ignore
+    console.log(fragment.content, "content");
+    console.log("compile ended");
+    // @ts-ignore
     return fragment.content;
   }
 }

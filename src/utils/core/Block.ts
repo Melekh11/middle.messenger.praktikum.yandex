@@ -109,7 +109,9 @@ export default abstract class Block {
 
   // обновляем события + рендерим элемент заново
   _render() {
+    console.log(this.render)
     const block = this.render(); // render теперь возвращает DocumentFragment
+    console.log(block, "block");
     this._delEvents();
 
     // @ts-ignore
@@ -181,6 +183,7 @@ export default abstract class Block {
   }
 
   compile(template: string, props: TProps) {
+
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
@@ -189,7 +192,8 @@ export default abstract class Block {
 
     const fragment = this._createDocumentElement("template");
 
-    if (!fragment || !fragment.innerHTML){
+    if (!fragment){
+      console.log("return with nothing")
       return;
     }
     fragment.innerHTML = compile(template)(propsAndStubs);

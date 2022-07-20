@@ -1,5 +1,4 @@
 export default class EventBus {
-  // подскажите как сделать так, чтобы listeners был объектом, который по ключу string содержит array функций
   protected listeners: Record<string, Function[]>;
 
   constructor() {
@@ -19,7 +18,7 @@ export default class EventBus {
     }
 
     this.listeners[event] = this.listeners[event].filter(
-      (listener) => listener !== callback
+      listener => listener !== callback
     );
   }
 
@@ -28,9 +27,9 @@ export default class EventBus {
       throw new Error(`события ${event} не существует`);
     }
 
-    this.listeners[event].forEach(function (listener) {
-      // @ts-ignore
-      listener(...args);
+    this.listeners[event].forEach(listener => {
+      console.log(listener);
+      listener({...args});
     });
   }
 }

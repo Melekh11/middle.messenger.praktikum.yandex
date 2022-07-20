@@ -10,6 +10,7 @@ export default class ContactCard extends Block {
   }
 
   render() {
+    console.log(this.props, this.compile(contCardTemplate, this.props));
     return this.compile(contCardTemplate, this.props);
   }
 
