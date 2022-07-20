@@ -1,8 +1,6 @@
 import EventBus from "./EventBus";
 import ProxyProps from "./ProxyProps";
-// @ts-ignore
 import { v4 as makeUUID } from "uuid";
-// @ts-ignore
 import { compile } from "pug";
 
 interface IChildren {
@@ -79,7 +77,6 @@ export default abstract class Block {
   }
 
   _componentDidUpdate(oldProps: TProps, newProps: TProps) {
-    // @ts-ignore
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -87,12 +84,12 @@ export default abstract class Block {
     this._render();
   }
 
-  componentDidUpdate() {
-    return true;
+  componentDidUpdate(oldProps: TProps, newProps: TProps) {
+    return oldProps !== newProps;
+
   }
 
   setProps = (nextProps: TProps) => {
-    console.log(1);
     if (!nextProps) {
       return;
     }
@@ -114,10 +111,12 @@ export default abstract class Block {
     console.log(block, "block");
     this._delEvents();
 
-    // @ts-ignore
-    const newElement = block.firstElementChild as HTMLElement;
+    const newElement = (block as unknown as HTMLElement).firstElementChild;
+    if (!newElement){
+      return;
+    }
     this._element.replaceWith(newElement);
-    this._element = newElement;
+    (this._element as Element) = newElement;
     this._addEvents();
   }
 
@@ -201,11 +200,9 @@ export default abstract class Block {
 
 
     Object.values(this.children).forEach((child) => {
-      // @ts-ignore
-      const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
+      const stub = (fragment as any).content.querySelector(`[data-id="${child.id}"]`);
       stub.replaceWith(child.getContent());
     });
-    // @ts-ignore
-    return fragment.content;
+    return (fragment as any).content;
   }
 }

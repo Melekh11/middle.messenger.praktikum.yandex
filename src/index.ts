@@ -10,8 +10,7 @@ import ChatsPage from "./pages/chats/chats";
 import HelloPage from "./pages/hello-page/hello-page";
 
 render("#root", new HelloPage({}));
-// @ts-ignore
-window.renderPage = function (pageName) {
+window["renderPage"] = function (pageName: string) {
   switch (pageName) {
     case "profilePage": {
       render(

@@ -1,12 +1,10 @@
 import "./change-profile.less";
-// @ts-ignore
 import changeProfTemplate from "./change-profile.pug";
 import {TProps} from "../../utils/core/Block";
 import Block from "../../utils/core/Block";
 import Input from "../../components/input/input";
 import SubmitButton from "../../components/submit-button/submit-button";
 import ButtonBack from "../../components/button-back/button-back";
-// @ts-ignore
 import avatar from "../../static/img/ava.png";
 
 function fastInputInit(textLabel: string, inputName: string, inputCheckType: string) {

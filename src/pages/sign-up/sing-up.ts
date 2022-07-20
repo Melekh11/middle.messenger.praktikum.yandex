@@ -4,7 +4,6 @@ import Input from "../../components/input/input";
 import ButtonBack from "../../components/button-back/button-back";
 import SubmitButton from "../../components/submit-button/submit-button";
 import "./sign-up.less";
-// @ts-ignore
 import singUpTemplate from "./sign-up.pug";
 
 function shortInputInit(

@@ -1,7 +1,6 @@
 import Block from "../../utils/core/Block";
 import {TProps} from "../../utils/core/Block";
-import "./submit-button.less";
-// @ts-ignore
+import "./submit-button.less"
 import btnSubTemplate from "./submit-button.pug";
 
 export default class SubmitButton extends Block {
@@ -26,8 +25,7 @@ export default class SubmitButton extends Block {
           for (const input of inputsInTemplate) {
             console.log(input.value);
           }
-          // @ts-ignore
-          window.renderPage("profilePage");
+          window["renderPage"]("profilePage");
         },
       },
     });

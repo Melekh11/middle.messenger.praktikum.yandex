@@ -1,7 +1,5 @@
 import "./profile.less";
-// @ts-ignore
 import avatar from "../../static/img/ava.png";
-// @ts-ignore
 import profileTemplate from "./profile.pug";
 import Block from "../../utils/core/Block";
 import {TProps} from "../../utils/core/Block";

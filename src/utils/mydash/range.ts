@@ -1,4 +1,4 @@
-export function range(...params): number[] {
+export function range({...params}): number[] {
   let ans: number[] = [];
   let delta, counter: number;
 

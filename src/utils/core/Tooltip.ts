@@ -3,7 +3,7 @@ import ProxyProps from "./ProxyProps";
 (function () {
   class Tooltip {
     public readonly el: HTMLElement;
-    protected listeners: Function[];
+    protected listeners: Record<string, string | HTMLElement | Function>[];
 
     readonly _cssClassName = "tooltip";
     readonly _indent: number = 5;
@@ -54,16 +54,19 @@ import ProxyProps from "./ProxyProps";
 
     delegate(eventName: string, element: HTMLElement, cssSelector: string, callback: Function) {
       const fn = (event: Event) => {
-        // @ts-ignore
-        if (!event.target.matches(cssSelector)) {
-          // @ts-ignore
+        let target = event.target ;
+        if (!target){
+          return;
+        }
+        let targetHTML = target as HTMLElement;
+
+        if (!targetHTML.matches(cssSelector)) {
           return;
         }
         callback(event);
       };
 
       element.addEventListener(eventName, fn);
-      // @ts-ignore
       this.listeners.push({ fn, element, eventName });
       return this;
     }
@@ -78,19 +81,17 @@ import ProxyProps from "./ProxyProps";
     }
 
     detach() {
-      // @ts-ignore
       for (const { fn, element, eventName } of this.listeners) {
-        element.removeEventListener(eventName, fn);
+        (element as HTMLElement).removeEventListener((eventName as keyof HTMLElementEventMap), (fn as EventListenerOrEventListenerObject));
       }
 
       this.listeners = [];
     }
   }
 
-  // @ts-ignore
-  window.Tooltip = ProxyProps(Tooltip);
+  window["Tooltip"] = ProxyProps(Tooltip);
+  const tooltip = new Tooltip();
+  tooltip.attach(document.body);
 })();
 
-// @ts-ignore
-const tooltip = new Tooltip();
-tooltip.attach(document.body);
+

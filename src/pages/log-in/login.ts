@@ -4,7 +4,6 @@ import ButtonBack from "../../components/button-back/button-back";
 import Input from "../../components/input/input";
 import SubmitButton from "../../components/submit-button/submit-button";
 import "./login.less";
-// @ts-ignore
 import loginTemplate from "./login.pug";
 
 

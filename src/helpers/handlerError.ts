@@ -28,6 +28,8 @@ export default function checkError(
             if (!val) {
                 return {error: true, errorText: "пустое поле"};
             } else return {error: false, errorText: ""};
+        } default: {
+            return {error: false, errorText: ""};
         }
     }
 

@@ -1,7 +1,6 @@
 import Block from "../../utils/core/Block";
 import Input from "../input/input";
 import "./dialog-field.less";
-// @ts-ignore
 import dialogTemplate from "./dialog-field.pug";
 import {TProps} from "../../utils/core/Block";
 

@@ -1,12 +1,10 @@
 import Block from "../../utils/core/Block";
 import ContactCard from "../../components/contact-card/contact-card";
 import { usersData } from "../../components/temporary-user-data";
-// @ts-ignore
 import { compile } from "pug";
 import DialogField from "../../components/dialog-field/dialog-field";
 import {TProps} from "../../utils/core/Block";
 import "./chats.less";
-// @ts-ignore
 import chatsTemplate from "./chats.pug";
 
 export default class ChatsPage extends Block {
@@ -76,14 +74,9 @@ export default class ChatsPage extends Block {
     });
 
     Object.values(this.children).forEach((child) => {
-      // @ts-ignore
-      const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
+      const stub = (fragment as any).content.querySelector(`[data-id="${child.id}"]`);
       stub.replaceWith(child.getContent());
     });
-    // @ts-ignore
-    console.log(fragment.content, "content");
-    console.log("compile ended");
-    // @ts-ignore
-    return fragment.content;
+    return (fragment as any).content;
   }
 }

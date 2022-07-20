@@ -1,5 +1,4 @@
 import "./button-back.less";
-// @ts-ignore
 import btnBackTemplate from "./button-back.pug";
 import Block from "../../utils/core/Block";
 import {TProps} from "../../utils/core/Block";

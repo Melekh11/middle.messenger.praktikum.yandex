@@ -1,40 +1,47 @@
-enum METHODS {
+enum methods {
   GET = "GET",
   POST = "POST",
   PUT = "PUT",
   DELETE = "DELETE",
 }
 
-function queryStringify(data: string[]) {
-  let ans = "?";
-  for (let key in data) {
-    ans += `${key}=${data[key]}&`;
-  }
-  ans = ans.substring(0, ans.length - 1);
-  return ans;
+type Options = {
+  method: methods;
+  data?: any;
+  headers?: any;
+};
+
+type OptionsWithoutMethod = Omit<Options, 'method'>;
+
+
+function queryStringify(data: Record<string, string>) {
+  const keys = Object.keys(data);
+  return keys.reduce((result, key, index) => {
+    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+  }, '?');
 }
 
 class HTTPTransport {
-  get(url: string, options = {}) {
-    return this.request(url, { ...options, method: METHODS.GET });
+  get(url: string, options: OptionsWithoutMethod = {}) {
+    return this.request(url, { ...options, method: methods.GET });
   }
 
-  post(url: string, options = {}) {
-    return this.request(url, { ...options, method: METHODS.POST });
+  post(url: string, options: OptionsWithoutMethod = {}) {
+    return this.request(url, { ...options, method: methods.POST });
   }
 
-  put(url: string, options = {}) {
-    return this.request(url, { ...options, method: METHODS.PUT });
+  put(url: string, options: OptionsWithoutMethod = {}) {
+    return this.request(url, { ...options, method: methods.PUT });
   }
 
-  delete(url: string, options = {}) {
-    return this.request(url, { ...options, method: METHODS.DELETE });
+  delete(url: string, options: OptionsWithoutMethod = {}) {
+    return this.request(url, { ...options, method: methods.DELETE });
   }
 
-  request(url: string, options: Record<string, any>) {
+  request(url: string, options: Options = { method: methods.GET}): Promise<XMLHttpRequest> {
     let { data, method, headers } = options;
 
-    if (method === METHODS.GET) {
+    if (method === methods.GET) {
       url += queryStringify(data);
     }
 
@@ -54,7 +61,7 @@ class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === METHODS.GET || !data) {
+      if (method === methods.GET || !data) {
         xhr.send();
       } else {
         xhr.send(data);
@@ -78,7 +85,7 @@ function fetchWithRetry(url: string, options: Record<string, any>): unknown {
 
   let transport = new HTTPTransport();
   delete options["retries"];
-  options["method"] = METHODS.GET;
+  options["method"] = methods.GET;
   return transport
     .get(url, options)
     .then((res) => {

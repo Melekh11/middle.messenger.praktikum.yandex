@@ -13,6 +13,8 @@
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.6.2",
     "@parcel/transformer-less": "2.6.2",
+    "@types/pug": "^2.0.6",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
     "assert": "2.0.0",

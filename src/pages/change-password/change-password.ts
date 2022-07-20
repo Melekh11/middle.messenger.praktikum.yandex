@@ -3,10 +3,8 @@ import {TProps} from "../../utils/core/Block";
 import Input from "../../components/input/input";
 import SubmitButton from "../../components/submit-button/submit-button";
 import ButtonBack from "../../components/button-back/button-back";
-// @ts-ignore
 import changeProfTemplate from "./change-password.pug";
 import "./change-password.less";
-// @ts-ignore
 import avatar from "../../static/img/ava.png";
 
 export default class ChangeProfilePasswordPage extends Block {

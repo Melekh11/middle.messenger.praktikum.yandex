@@ -1,7 +1,6 @@
 import Block from "../../utils/core/Block";
 import {TProps} from "../../utils/core/Block";
 import "./contact-card.less";
-// @ts-ignore
 import contCardTemplate from "./contact-card.pug";
 
 export default class ContactCard extends Block {

@@ -2,6 +2,9 @@ import Block from "./Block";
 
 export default function render(query: string, block: Block) {
   const root = document.querySelector(query);
+  if (!root){
+    return;
+  }
   clearPage(root);
   if (root) {
     root.appendChild(block.element);
@@ -9,8 +12,7 @@ export default function render(query: string, block: Block) {
   return root;
 }
 
-function clearPage(element: Element | null) {
-  // @ts-ignore
+function clearPage(element: Element) {
   if (element.firstChild) {
     element!.removeChild(element!.firstChild);
     clearPage(element);
