@@ -1,14 +1,16 @@
 import Block from "../../utils/core/Block";
 import ContactCard from "../../components/contact-card/contact-card";
 import { usersData } from "../../components/temporary-user-data";
+// @ts-ignore
 import { compile } from "pug";
 import DialogField from "../../components/dialog-field/dialog-field";
+import {TProps} from "../../utils/core/Block";
 import "./chats.less";
 // @ts-ignore
 import chatsTemplate from "./chats.pug";
 
 export default class ChatsPage extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     let cardList: ContactCard[] = [];
     for (let user of usersData) {
       cardList.push(new ContactCard(user));
@@ -25,18 +27,13 @@ export default class ChatsPage extends Block {
       }),
       // dataIdDialogField: dialogField.id,
       events: {
-        click: (event) => {
-          const target = event.target;
+        click: (event: Event) => {
+          const target = event.target as HTMLElement;
+          if (!target){
+            return;
+          }
           if (target.hasAttribute("contact-id")) {
-            let flow: Array<unknown[]> = [];
-            let userName;
-            for (let user of usersData) {
-              if (user.userId === target.getAttribute("contact-id")) {
-                flow.push(user.messageFlow);
-              }
-              userName = user.userName;
-            }
-
+            // реализация добавления нужного списка чатов
             this.children.dialogField.setProps({
               dialogChosen: true,
             });
@@ -50,9 +47,7 @@ export default class ChatsPage extends Block {
     return this.compile(chatsTemplate, { isDialog: this.props.isDialog });
   }
 
-  compile(template, props) {
-    console.log("rerender!!!!");
-
+  compile(template: string, props: TProps) {
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
@@ -62,7 +57,7 @@ export default class ChatsPage extends Block {
     const fragment = this._createDocumentElement("template");
 
     let readyListOfCards: string[] = [];
-    this.props.chatList.forEach((card) => {
+    this.props.chatList.forEach((card: Block) => {
       const contactId = card.props.contactId;
       readyListOfCards.push(
         `<div class='user-card' contact-id=${contactId}>` +

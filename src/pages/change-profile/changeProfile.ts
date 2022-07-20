@@ -1,6 +1,7 @@
 import "./change-profile.less";
 // @ts-ignore
 import changeProfTemplate from "./change-profile.pug";
+import {TProps} from "../../utils/core/Block";
 import Block from "../../utils/core/Block";
 import Input from "../../components/input/input";
 import SubmitButton from "../../components/submit-button/submit-button";
@@ -8,7 +9,7 @@ import ButtonBack from "../../components/button-back/button-back";
 // @ts-ignore
 import avatar from "../../static/img/ava.png";
 
-function fastInputInit(textLabel, inputName, inputCheckType) {
+function fastInputInit(textLabel: string, inputName: string, inputCheckType: string) {
   return new Input({
     textLabel: textLabel,
     inputClass: "inlineText",
@@ -19,7 +20,7 @@ function fastInputInit(textLabel, inputName, inputCheckType) {
 }
 
 export default class ChangeProfilePage extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super("div", {
       ...props,
       btnBack: new ButtonBack({}),

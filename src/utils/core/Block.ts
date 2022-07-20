@@ -1,6 +1,8 @@
 import EventBus from "./EventBus";
 import ProxyProps from "./ProxyProps";
+// @ts-ignore
 import { v4 as makeUUID } from "uuid";
+// @ts-ignore
 import { compile } from "pug";
 
 interface IChildren {
@@ -17,10 +19,10 @@ enum EVENTS {
 }
 
 export default abstract class Block {
-  protected _element;
+  protected _element: HTMLElement;
   protected _meta;
   protected eventBus: Function;
-  protected props: TProps;
+  public props: TProps;
   protected children: IChildren;
   public id: string | null = null;
 
@@ -42,10 +44,10 @@ export default abstract class Block {
 
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
-    eventBus.emit(EVENTS.INIT);
+    eventBus.emit(EVENTS.INIT, {});
   }
 
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(EVENTS.INIT, this.init.bind(this));
     eventBus.on(EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -55,7 +57,7 @@ export default abstract class Block {
   // создаём _element и объявляем FLOW_RENDER
   init() {
     const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+    this._element = this._createDocumentElement(tagName) as HTMLElement;
     this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
@@ -70,13 +72,14 @@ export default abstract class Block {
     this.eventBus().emit(EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount(oldProps: object = {}) {}
+  componentDidMount() {}
 
   dispatchComponentDidMount() {
     this.eventBus().emit(EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps, newProps) {
+  _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+    // @ts-ignore
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -84,11 +87,11 @@ export default abstract class Block {
     this._render();
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate() {
     return true;
   }
 
-  setProps = (nextProps) => {
+  setProps = (nextProps: TProps) => {
     console.log(1);
     if (!nextProps) {
       return;
@@ -125,10 +128,13 @@ export default abstract class Block {
     return this.element;
   }
 
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const element = document.createElement(tagName);
     if (this.props["withInternalID"] === true) {
+      if (!this.id){
+        return;
+      }
       element.setAttribute("data-id", this.id);
     }
     return element;
@@ -159,9 +165,9 @@ export default abstract class Block {
     });
   }
 
-  _getChildren(propsAndChildren) {
-    const children = {};
-    const props = {};
+  _getChildren(propsAndChildren: TProps) {
+    const children: Record<string, any> = {};
+    const props: Record<string, any> = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -174,7 +180,7 @@ export default abstract class Block {
     return { children, props };
   }
 
-  compile(template, props) {
+  compile(template: string, props: TProps) {
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
@@ -183,12 +189,19 @@ export default abstract class Block {
 
     const fragment = this._createDocumentElement("template");
 
+    if (!fragment || !fragment.innerHTML){
+      return;
+    }
     fragment.innerHTML = compile(template)(propsAndStubs);
 
+
+
     Object.values(this.children).forEach((child) => {
+      // @ts-ignore
       const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
       stub.replaceWith(child.getContent());
     });
+    // @ts-ignore
     return fragment.content;
   }
 }

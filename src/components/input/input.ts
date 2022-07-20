@@ -2,13 +2,15 @@ import "./input.less";
 // @ts-ignore
 import inputTemplate from "./input.pug";
 import Block from "../../utils/core/Block";
+// @ts-ignore
 import { v4 as makeUUID } from "uuid";
 import checkError from "../../helpers/handlerError";
+import {TProps} from "../../utils/core/Block";
 
 export default class Input extends Block {
-  public isError;
+  public isError: boolean;
 
-  constructor(props) {
+  constructor(props: TProps) {
     super("div", {
       ...props,
       idInput: makeUUID(),
@@ -23,6 +25,7 @@ export default class Input extends Block {
         this._element.querySelector("input")
       );
       this._element.querySelector("input").addEventListener("blur", () => {
+        // @ts-ignore
         let { error, errorText } = checkError(
           this.getContent().querySelector("input").value,
           this.props.inputCheckType
@@ -43,11 +46,4 @@ export default class Input extends Block {
       idInput: this.id,
     });
   }
-
-  constantsActions = () => {
-    this._element.querySelector("input").addEventListener("focus", (event) => {
-      this.setProps({ isError: false });
-      event.target.focus();
-    });
-  };
 }

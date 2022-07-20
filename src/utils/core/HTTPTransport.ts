@@ -15,23 +15,23 @@ function queryStringify(data: string[]) {
 }
 
 class HTTPTransport {
-  get(url, options = {}) {
+  get(url: string, options = {}) {
     return this.request(url, { ...options, method: METHODS.GET });
   }
 
-  post(url, options = {}) {
+  post(url: string, options = {}) {
     return this.request(url, { ...options, method: METHODS.POST });
   }
 
-  put(url, options = {}) {
+  put(url: string, options = {}) {
     return this.request(url, { ...options, method: METHODS.PUT });
   }
 
-  delete(url, options = {}) {
+  delete(url: string, options = {}) {
     return this.request(url, { ...options, method: METHODS.DELETE });
   }
 
-  request(url, options) {
+  request(url: string, options: Record<string, any>) {
     let { data, method, headers } = options;
 
     if (method === METHODS.GET) {
@@ -63,7 +63,7 @@ class HTTPTransport {
   }
 }
 
-function fetchWithRetry(url, options) {
+function fetchWithRetry(url: string, options: Record<string, any>): unknown {
   let counter = options["retries"];
 
   let onError = function () {

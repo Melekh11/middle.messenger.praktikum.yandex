@@ -3,7 +3,7 @@ import ProxyProps from "./ProxyProps";
 (function () {
   class Tooltip {
     public readonly el: HTMLElement;
-    protected listeners;
+    protected listeners: Function[];
 
     readonly _cssClassName = "tooltip";
     readonly _indent: number = 5;
@@ -26,9 +26,12 @@ import ProxyProps from "./ProxyProps";
       return this._indent;
     }
 
-    onShow = (event) => {
-      const sourceEl = event.target;
-      this.el.innerHTML = sourceEl.getAttribute("data-tooltip");
+    onShow = (event: Event) => {
+      const sourceEl = event.target as HTMLElement;
+      if (!sourceEl){
+        return;
+      }
+      this.el.innerHTML = sourceEl.getAttribute("data-tooltip") || "";
       this.el.classList.add(`${this.name}_active`);
 
       const sourceElRect = sourceEl.getBoundingClientRect();
@@ -49,20 +52,23 @@ import ProxyProps from "./ProxyProps";
       this.el.classList.remove(`${this.name}_active`);
     }
 
-    delegate(eventName, element, cssSelector, callback) {
-      const fn = (event) => {
+    delegate(eventName: string, element: HTMLElement, cssSelector: string, callback: Function) {
+      const fn = (event: Event) => {
+        // @ts-ignore
         if (!event.target.matches(cssSelector)) {
+          // @ts-ignore
           return;
         }
         callback(event);
       };
 
       element.addEventListener(eventName, fn);
+      // @ts-ignore
       this.listeners.push({ fn, element, eventName });
       return this;
     }
 
-    attach(root) {
+    attach(root: HTMLElement) {
       this.delegate("mouseover", root, "[data-tooltip]", this.onShow).delegate(
         "mouseout",
         root,
@@ -72,6 +78,7 @@ import ProxyProps from "./ProxyProps";
     }
 
     detach() {
+      // @ts-ignore
       for (const { fn, element, eventName } of this.listeners) {
         element.removeEventListener(eventName, fn);
       }

@@ -23,12 +23,13 @@ export default class EventBus {
     );
   }
 
-  emit(event: string, ...args) {
+  emit(event: string, args: Record<string, any>) {
     if (!this.listeners[event]) {
       throw new Error(`события ${event} не существует`);
     }
 
     this.listeners[event].forEach(function (listener) {
+      // @ts-ignore
       listener(...args);
     });
   }

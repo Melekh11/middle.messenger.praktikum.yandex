@@ -1,4 +1,5 @@
 import Block from "../../utils/core/Block";
+import {TProps} from "../../utils/core/Block";
 import Input from "../../components/input/input";
 import ButtonBack from "../../components/button-back/button-back";
 import SubmitButton from "../../components/submit-button/submit-button";
@@ -7,10 +8,10 @@ import "./sign-up.less";
 import singUpTemplate from "./sign-up.pug";
 
 function shortInputInit(
-  textLabel,
-  inputName,
-  inputCheckType,
-  inputType = "text"
+  textLabel: string,
+  inputName: string,
+  inputCheckType: string,
+  inputType: string = "text"
 ) {
   return new Input({
     textLabel: textLabel,
@@ -22,7 +23,7 @@ function shortInputInit(
 }
 
 export default class SignUpPage extends Block {
-  constructor(...props) {
+  constructor(props: TProps) {
     super("div", {
       ...props,
       btnBack: new ButtonBack({}),

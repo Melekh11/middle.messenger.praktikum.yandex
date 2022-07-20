@@ -1,4 +1,5 @@
 import Block from "../../utils/core/Block";
+import {TProps} from "../../utils/core/Block";
 import Input from "../../components/input/input";
 import SubmitButton from "../../components/submit-button/submit-button";
 import ButtonBack from "../../components/button-back/button-back";
@@ -9,7 +10,7 @@ import "./change-password.less";
 import avatar from "../../static/img/ava.png";
 
 export default class ChangeProfilePasswordPage extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super("div", {
       ...props,
       btnBack: new ButtonBack({}),

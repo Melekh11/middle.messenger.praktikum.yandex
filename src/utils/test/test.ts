@@ -1,12 +1,12 @@
-import Block from "../core/Block";
-import { compile } from "pug";
+import Block, {TProps} from "../core/Block";
+// import { compile } from "pug";
 import "./style.less";
 import "../../index.less";
 // @ts-ignore
 import profileTemplate from "./template.pug";
 // @ts-ignore
 import render from "../../utils/core/render";
-import ErrorPage from "../../pages/errors/error";
+// import ErrorPage from "../../pages/errors/error";
 import Input from "../../components/input/input";
 
 const input = new Input({
@@ -22,20 +22,8 @@ const input = new Input({
 
 render("#root", input);
 
-class Button extends Block {
-  constructor(props) {
-    super("div", { ...props });
-  }
-
-  render() {
-    return this.compile("button #{text}", {
-      text: this.props.text,
-    });
-  }
-}
-
 class UserProfile extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super("div", {
       ...props,
       chatList: ["<div>kfjf</div>", "<div>kfjf</div>", "<div>kfjf</div>"],
@@ -51,9 +39,11 @@ class UserProfile extends Block {
   }
 }
 
-function render(query, block) {
+function render(query: string, block: Block) {
   const root = document.querySelector(query);
-
+  if (!root){
+    return
+  }
   root.appendChild(block.getContent());
   return root;
 }

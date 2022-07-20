@@ -1,6 +1,6 @@
 function ProxyProps(props: any) {
   return new Proxy(props, {
-    get(target: object, prop: string) {
+    get(target: Record<string, unknown>, prop: string) {
       if (prop.startsWith("_")) {
         throw new Error(`нет доступа к параметру ${prop}`);
       }
@@ -12,6 +12,7 @@ function ProxyProps(props: any) {
       if (prop.startsWith("_")) {
         throw new Error("Нет прав");
       }
+      // @ts-ignore не понимаю как тут сделать нудный ts код :((
       target[prop] = value;
       return true;
     },
@@ -20,6 +21,7 @@ function ProxyProps(props: any) {
       if (prop.startsWith("_")) {
         throw new Error("Нет прав");
       }
+      // @ts-ignore
       delete target[prop];
       return true;
     },

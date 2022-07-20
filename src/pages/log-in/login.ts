@@ -1,4 +1,5 @@
 import Block from "../../utils/core/Block";
+import {TProps} from "../../utils/core/Block";
 import ButtonBack from "../../components/button-back/button-back";
 import Input from "../../components/input/input";
 import SubmitButton from "../../components/submit-button/submit-button";
@@ -6,8 +7,9 @@ import "./login.less";
 // @ts-ignore
 import loginTemplate from "./login.pug";
 
+
 export default class LoginPage extends Block {
-  constructor(props) {
+  constructor(props:TProps) {
     super("div", {
       ...props,
       buttonBack: new ButtonBack({}),

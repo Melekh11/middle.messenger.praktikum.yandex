@@ -4,10 +4,11 @@ import avatar from "../../static/img/ava.png";
 // @ts-ignore
 import profileTemplate from "./profile.pug";
 import Block from "../../utils/core/Block";
+import {TProps} from "../../utils/core/Block";
 import Input from "../../components/input/input";
 import ButtonBack from "../../components/button-back/button-back";
 
-function shortInputInit(textLabel, inputName, inputValue) {
+function shortInputInit(textLabel: string, inputName: string, inputValue: string) {
   return new Input({
     textLabel: textLabel,
     inputClass: "inlineText",
@@ -19,7 +20,7 @@ function shortInputInit(textLabel, inputName, inputValue) {
 }
 
 export default class ProfilePage extends Block {
-  constructor(props) {
+  constructor(props: TProps) {
     super("div", {
       ...props,
       btnBack: new ButtonBack({}),
