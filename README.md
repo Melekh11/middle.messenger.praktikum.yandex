@@ -2,5 +2,6 @@
 ссылка на netliy: https://62d7f0eae401a30008a259b8--jocular-biscotti-29151e.netlify.app/
 ссылка на pull request: https://github.com/Melekh11/middle.messenger.praktikum.yandex/pull/2#partial-pull-merging
 
+
 в проекте использовался шаблонизатор pug, в качестве препроцессора css - less
 проект запускается через скрипт npm run start
