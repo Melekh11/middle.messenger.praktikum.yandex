@@ -1,0 +1,21 @@
+{
+  "env": {
+    "es6": true
+  },
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "max-len": [2, 100],
+    "quotes": [2, "double"],
+    "getter-return": ["error", { "allowImplicit": true }],
+    "no-var": 2,
+    "no-multi-spaces": 2,
+    "no-multiple-empty-lines": 2,
+    "no-dupe-args": 2,
+    "no-compare-neg-zero": 1,
+    "for-direction": 1,
+    "no-use-before-define": 1,
+    "eqeqeq": [1, "always"]
+  }
+}
