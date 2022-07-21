@@ -19,11 +19,11 @@ export default class Input extends Block {
                 return;
             }
             el.addEventListener("focus", () => {
-                const p = this._element.querySelector("p");
-                if (!p) {
-                    return
+                const errorElement = this._element.querySelector("p");
+                if (!errorElement) {
+                    return;
                 }
-                p.style.display = "none";
+                errorElement.style.display = "none";
             });
 
             el.addEventListener("blur", () => {

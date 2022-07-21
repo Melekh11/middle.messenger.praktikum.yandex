@@ -1,4 +1,4 @@
-enum methods {
+enum Methods {
   GET = "GET",
   POST = "POST",
   PUT = "PUT",
@@ -6,7 +6,7 @@ enum methods {
 }
 
 type Options = {
-  method: methods;
+  method: Methods;
   data?: any;
   headers?: any;
 };
@@ -23,25 +23,25 @@ function queryStringify(data: Record<string, string>) {
 
 class HTTPTransport {
   get(url: string, options: OptionsWithoutMethod = {}) {
-    return this.request(url, { ...options, method: methods.GET });
+    return this.request(url, { ...options, method: Methods.GET });
   }
 
   post(url: string, options: OptionsWithoutMethod = {}) {
-    return this.request(url, { ...options, method: methods.POST });
+    return this.request(url, { ...options, method: Methods.POST });
   }
 
   put(url: string, options: OptionsWithoutMethod = {}) {
-    return this.request(url, { ...options, method: methods.PUT });
+    return this.request(url, { ...options, method: Methods.PUT });
   }
 
   delete(url: string, options: OptionsWithoutMethod = {}) {
-    return this.request(url, { ...options, method: methods.DELETE });
+    return this.request(url, { ...options, method: Methods.DELETE });
   }
 
-  request(url: string, options: Options = { method: methods.GET}): Promise<XMLHttpRequest> {
+  request(url: string, options: Options = { method: Methods.GET}): Promise<XMLHttpRequest> {
     let { data, method, headers } = options;
 
-    if (method === methods.GET) {
+    if (method === Methods.GET) {
       url += queryStringify(data);
     }
 
@@ -61,7 +61,7 @@ class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === methods.GET || !data) {
+      if (method === Methods.GET || !data) {
         xhr.send();
       } else {
         xhr.send(data);
@@ -85,7 +85,7 @@ function fetchWithRetry(url: string, options: Record<string, any>): unknown {
 
   let transport = new HTTPTransport();
   delete options["retries"];
-  options["method"] = methods.GET;
+  options["method"] = Methods.GET;
   return transport
     .get(url, options)
     .then((res) => {

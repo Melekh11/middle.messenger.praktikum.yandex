@@ -9,7 +9,7 @@ interface IChildren {
 
 export type TProps = Record<string, any>;
 
-enum EVENTS {
+enum Events {
   INIT = "init",
   FLOW_CDM = "flow:component-did-mount",
   FLOW_CDU = "flow:component-did-update",
@@ -42,21 +42,21 @@ export default abstract class Block {
 
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
-    eventBus.emit(EVENTS.INIT, {});
+    eventBus.emit(Events.INIT, {});
   }
 
   _registerEvents(eventBus: EventBus) {
-    eventBus.on(EVENTS.INIT, this.init.bind(this));
-    eventBus.on(EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Events.INIT, this.init.bind(this));
+    eventBus.on(Events.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Events.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Events.FLOW_RENDER, this._render.bind(this));
   }
 
   // создаём _element и объявляем FLOW_RENDER
   init() {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName) as HTMLElement;
-    this.eventBus().emit(EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Events.FLOW_RENDER);
   }
 
   // поднимаем себя и всех детей
@@ -67,13 +67,13 @@ export default abstract class Block {
       child.dispatchComponentDidMount();
     });
 
-    this.eventBus().emit(EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Events.FLOW_RENDER);
   }
 
   componentDidMount() {}
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(EVENTS.FLOW_CDM);
+    this.eventBus().emit(Events.FLOW_CDM);
   }
 
   _componentDidUpdate(oldProps: TProps, newProps: TProps) {
@@ -94,7 +94,7 @@ export default abstract class Block {
       return;
     }
     Object.assign(this.props, nextProps);
-    this.eventBus().emit(EVENTS.FLOW_CDM);
+    this.eventBus().emit(Events.FLOW_CDM);
     this.constantsActions();
   };
 
