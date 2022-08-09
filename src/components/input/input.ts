@@ -2,7 +2,7 @@ import "./input.less";
 import inputTemplate from "./input.pug";
 import Block from "../../utils/core/Block";
 import {v4 as makeUUID} from "uuid";
-import checkError from "../../helpers/handlerError";
+import checkError from "../../helpers/checkers/handlerError";
 import {TProps} from "../../utils/core/Block";
 
 export default class Input extends Block {
@@ -14,12 +14,12 @@ export default class Input extends Block {
             idInput: makeUUID(),
         });
         {
-            const el = this._element.querySelector("input");
+            const el = this._element?.querySelector("input");
             if (!el) {
                 return;
             }
             el.addEventListener("focus", () => {
-                const errorElement = this._element.querySelector("p");
+                const errorElement = this._element?.querySelector("p");
                 if (!errorElement) {
                     return;
                 }
@@ -42,7 +42,7 @@ export default class Input extends Block {
                 const errorText = ans.errorText;
                 if (error) {
                     this.isError = true;
-                    const p = this._element.querySelector("p");
+                    const p = this._element?.querySelector("p");
                     if (!p) {
                         return;
                     }

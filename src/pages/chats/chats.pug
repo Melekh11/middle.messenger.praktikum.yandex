@@ -1,13 +1,14 @@
 div.main_page
+    != modalAddChat
     div(class="user-nav")
         div(class="user-bar")
-            a(class="tools" onclick="window.renderPage('profilePage')") Настройки пользователя
-            input(class="search_contact" placeholder="поиск чата🔍")
+            != linkProfile
+            //a(class="tools") Настройки пользователя
+            div.flex
+                input(class="search_contact" placeholder="поиск чата🔍")
+                != btnAddChat
+
         for chat in chatList
             != chat
-    //!= dialogBox
-    //if isDialog
+
     != dialogField
-    //else
-    //    p(class="start-talk") выберите чат и начните переписку!
-    //    div(class="flagClass")
