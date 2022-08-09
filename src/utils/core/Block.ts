@@ -197,9 +197,12 @@ export default class Block {
         }
         fragment.innerHTML = compile(template)(propsAndStubs);
 
+        console.log(template, fragment);
+
         Object.values(this.children).forEach((child) => {
             const stub = (fragment as any).content.querySelector(`[data-id="${child.id}"]`);
 
+            console.log(child)
             stub.replaceWith(child.getContent());
         });
         return (fragment as any).content;

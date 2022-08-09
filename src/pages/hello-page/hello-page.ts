@@ -4,10 +4,10 @@ import LinkHelloPage from "../../components/link-hello-page/link-hello-page";
 import helloTemplate from "./hello-page.pug";
 import "./hello-page.less";
 import {routs} from "../../index";
-import connect from "../../utils/core/HOC";
+// import connect from "../../utils/core/HOC";
 
 
-class HelloPage extends Block {
+export default class HelloPage extends Block {
     constructor(props: TProps) {
         super("div", {
                 ...props,
@@ -26,6 +26,3 @@ class HelloPage extends Block {
         return this.compile(helloTemplate, {});
     }
 }
-
-const con = connect(() => ({}));
-export default con(HelloPage);
