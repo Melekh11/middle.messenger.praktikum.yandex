@@ -99,7 +99,6 @@ class DoublyLinkedList {
         }
         this.delete(iter);
         return "success"
-
     }
 
     delete(iter){
