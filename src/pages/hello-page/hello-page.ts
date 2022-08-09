@@ -14,7 +14,7 @@ class HelloPage extends Block {
                 linkChats: new LinkHelloPage({urlLink: routs.chatsPage, textLink: "Chat Page"}),
                 linkSignUp: new LinkHelloPage({urlLink: routs.signUpPage, textLink: "Sign Up"}),
                 linkProfile: new LinkHelloPage({urlLink: routs.changeProfilePage, textLink: "Settings"}),
-                linkLogIn: new LinkHelloPage({urlLink: routs.singInPage, textLink: "Login"}),
+                linkLogIn: new LinkHelloPage({urlLink: routs.signInPage, textLink: "Login"}),
                 linkError: new LinkHelloPage({urlLink: routs.errorPage, textLink: "Error"}),
                 linkChangeProfile: new LinkHelloPage({urlLink: routs.profilePage, textLink: "Profile"}),
                 linkChangePassword: new LinkHelloPage({urlLink: routs.changePasswordPage, textLink: "Change Password"})

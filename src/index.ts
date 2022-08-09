@@ -15,7 +15,7 @@ enum routs {
     signUpPage = "/sign-up",
     changeProfilePage = "/settings",
     chatsPage = "/messenger",
-    signInPage = "/sing-in",
+    signInPage = "/sign-in",
     changePasswordPage = "/change-password",
     profilePage = "/profile",
     errorPage = "/error"
