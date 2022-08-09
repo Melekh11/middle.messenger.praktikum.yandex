@@ -2,18 +2,27 @@ div
     != btnBack
     div(class="inner-profile")
         div(class="center")
-            != inputLogin
-            != inputShortName
-            != inputFullName
-            != inputEmail
-            != inputPhone
-
+            //div(class="profile-data")
+            div(class="profile-value")
+                p(class="header-to-value") логин
+                p(class="value") #{login}
+            div(class="profile-value")
+                p(class="header-to-value") короткое имя
+                p(class="value") #{shortName}
+            div(class="profile-value")
+                p(class="header-to-value") полное имя
+                p(class="value") #{fullName}
+            div(class="profile-value")
+                p(class="header-to-value") почта
+                p(class="value") #{email}
+            div(class="profile-value")
+                p(class="header-to-value") телефон
+                p(class="value") #{phone}
         div(class="center")
             img(src=urlIm alt="аватар")
-            // "../static/ava.png"
             div(class="margin")
                 p #{shortName}, #{fullName}
                 p #{login}
-            a(class="blue" onclick="window.renderPage('changeProfile')") изменить данные профиля
-            a(class="blue" onclick="window.renderPage('changePassword')") изменить пароль
-            a(class="red" onclick="window.renderPage('error-500')") выйти
+            != changeProfile
+            != changePassword
+            != out

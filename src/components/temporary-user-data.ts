@@ -1,8 +1,5 @@
-// @ts-ignore
 import ava0 from "../static/img/ava.png";
-// @ts-ignore
 import ava1 from "../static/img/ava1.png";
-// @ts-ignore
 import ava2 from "../static/img/ava2.png";
 
 export let usersData = [

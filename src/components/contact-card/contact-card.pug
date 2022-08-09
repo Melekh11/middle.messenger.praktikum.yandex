@@ -1,5 +1,5 @@
-div(class="user-card" contact-id=userId)
-    img(class="card-ava" src=urlIm alt="аватар" contact-id=userId)
-    div(class="inner-card-text" contact-id=userId)
-        a(class="to-user" contact-id=userId) #{userName}
-        label(class="last-word" contact-id=userId) #{lastMessage}
+div(class="user-card" id=idCard)
+    img(class="card-ava" src=urlIm alt="аватар")
+    div(class="inner-card-text")
+        a(class="to-user") #{title}
+        label(class="last-word") #{lastMessage}

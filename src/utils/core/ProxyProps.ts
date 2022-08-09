@@ -12,7 +12,6 @@ function ProxyProps(props: any) {
       if (prop.startsWith("_")) {
         throw new Error("Нет прав");
       }
-      // @ts-ignore не понимаю как тут сделать нудный ts код :((
       target[prop] = value;
       return true;
     },
@@ -21,7 +20,6 @@ function ProxyProps(props: any) {
       if (prop.startsWith("_")) {
         throw new Error("Нет прав");
       }
-      // @ts-ignore
       delete target[prop];
       return true;
     },

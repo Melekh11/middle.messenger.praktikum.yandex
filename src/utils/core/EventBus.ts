@@ -28,8 +28,8 @@ export default class EventBus {
     }
 
     this.listeners[event].forEach(listener => {
-      console.log(listener);
       listener({...args});
+
     });
   }
 }
