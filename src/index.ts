@@ -15,13 +15,16 @@ enum routs {
     signUpPage = "/sign-up",
     changeProfilePage = "/settings",
     chatsPage = "/messenger",
-    signInPage = "/sing-in",
+    signInPage = "/sign-in",
     changePasswordPage = "/change-password",
     profilePage = "/profile",
     errorPage = "/error"
 }
 
 const MyRouter = new Router();
+
+MyRouter.start();
+
 MyRouter
     .use(routs.signUpPage, SignUpPage)
     .use(routs.profilePage, ProfilePage, {
@@ -35,8 +38,8 @@ MyRouter
     .use(routs.chatsPage, ChatsPage)
     .use(routs.signInPage, SignInPage)
     .use(routs.changePasswordPage, ChangePasswordPage)
-    .use(routs.errorPage, ErrorPage, {errorNumber: 404})
-    .start()
+    .use(routs.errorPage, ErrorPage, {errorNumber: 404});
+
 
 if (store.getState().user){
     MyRouter.go(routs.profilePage);
