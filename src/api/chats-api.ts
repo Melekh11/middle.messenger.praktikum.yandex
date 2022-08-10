@@ -1,4 +1,4 @@
-import BaseAPI from "./base-api";
+import {BaseApi} from "./base-api";
 
 interface IChat{
     title: string
@@ -9,7 +9,7 @@ interface IChatUsers{
     chatId: number
 }
 
-class ChatsApi extends BaseAPI{
+class ChatsApi extends BaseApi{
     constructor() {
         super({path: "/chats"});
     }
@@ -40,13 +40,11 @@ class ChatsApi extends BaseAPI{
 
     public addChatAva(data: FormData){
         this.put("/avatar", {
-            headers: {},
             data: data
         })
     }
 
     public getToken(id: number){
-        console.log(".");
         return this.post(`/token/${id}`, {
             data: JSON.stringify({})
         })
@@ -59,5 +57,5 @@ class ChatsApi extends BaseAPI{
     }
 }
 
-export default new ChatsApi();
-export {IChat, IChatUsers}
+const chatsApi = new ChatsApi();
+export {chatsApi, IChat, IChatUsers}

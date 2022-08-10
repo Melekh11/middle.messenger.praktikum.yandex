@@ -1,8 +1,6 @@
-// messages_1.html
+import {store} from "../utils/core/Store";
 
-import store from "../utils/core/Store";
-
-export default class MessageController {
+export class MessageController {
     private userId: number;
     public socket: WebSocket;
 

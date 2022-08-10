@@ -1,21 +1,25 @@
-import Block from "../../utils/core/Block";
-import {TProps} from "../../utils/core/Block";
-import ButtonBack from "../../components/button-back/button-back";
-import Input from "../../components/input/input";
-import SubmitButton from "../../components/submit-button/submit-button";
+import {Block} from "../../utils/core/Block";
+import {ButtonBack} from "../../components/button-back/button-back";
+import {Input} from "../../components/input/input";
+import {SubmitButton} from "../../components/submit-button/submit-button";
 import "./login.less";
 import loginTemplate from "./login.pug";
-import connect from "../../utils/core/HOC";
-import authController from "../../controllers/auth-controller";
-import Button from "../../components/button/button";
+import {authController} from "../../controllers/auth-controller";
+import {Button} from "../../components/button/button";
 import {MyRouter, routs} from "../../index";
 
+type SignInProps = {
+    buttonBack: ButtonBack;
+    loginInput: Input;
+    passwordInput: Input;
+    submitBtn: SubmitButton;
+    createAc: Button;
+}
 
-class SignIn extends Block {
-    constructor(props: TProps) {
+class SignInPage extends Block<SignInProps> {
+    constructor() {
         super("div", {
-            ...props,
-            buttonBack: new ButtonBack({}),
+            buttonBack: new ButtonBack(),
             loginInput: new Input({
                 textLabel: "логин",
                 inputClass: "inlineText",
@@ -57,9 +61,6 @@ class SignIn extends Block {
                             login: (form.querySelector("[name=\"login\"]") as HTMLInputElement)?.value,
                             password: (form.querySelector("[name=\"password\"]") as HTMLInputElement)?.value
                         })
-                        // store.setState()
-
-                        // new Router().go("/");
                     },
                 }
             }),
@@ -79,5 +80,5 @@ class SignIn extends Block {
     }
 }
 
-const con = connect(() => ({}))
-export default con(SignIn);
+
+export {SignInPage};

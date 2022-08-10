@@ -1,7 +1,7 @@
-import merge, {Indexed} from "./merge";
+import {merge, Indexed} from "./merge";
 
 
-function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
+export function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
     if (typeof object !== 'object' || object === null) {
         return object;
     }
@@ -11,5 +11,3 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
     }), value as any);
     return merge(object as Indexed, result);
 }
-
-export default set

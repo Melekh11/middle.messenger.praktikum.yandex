@@ -1,7 +1,7 @@
-import authApi, {ISingIn, ISingUp} from "../api/auth-api";
+import {authApi,  ISingIn, ISingUp} from "../api/auth-api";
 import {MyRouter, routs} from "../index";
-import store from "../utils/core/Store";
-import chatsController from "./chats-controller";
+import {store} from "../utils/core/Store";
+import {chatsController} from "./chats-controller";
 
 
 class AuthController {
@@ -67,5 +67,5 @@ class AuthController {
     }
 }
 
-
-export default new AuthController()
+const authController = new AuthController();
+export {authController};

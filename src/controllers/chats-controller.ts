@@ -1,4 +1,4 @@
-import chatsApi from "../api/chats-api";
+import {chatsApi} from "../api/chats-api";
 import {IChatUsers} from "../api/chats-api";
 
 class ChatsController{
@@ -29,5 +29,5 @@ class ChatsController{
 
 }
 
-
-export default new ChatsController()
+const chatsController = new ChatsController();
+export {chatsController};

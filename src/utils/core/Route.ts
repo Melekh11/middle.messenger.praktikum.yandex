@@ -1,11 +1,11 @@
-import render from './render';
+import {render} from './render';
 import {TProps} from "./Block"
 
 function isEqual(lo: unknown, ro: unknown): boolean{
     return lo === ro;
 }
 
-export default class Route {
+export class Route {
     private _pathname: string;
     private _props: TProps;
     private _block: any;

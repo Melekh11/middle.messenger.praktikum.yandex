@@ -1,6 +1,6 @@
 import userApi from "../api/user-api";
-import authApi from "../api/auth-api";
-import store from "../utils/core/Store";
+import {authApi} from "../api/auth-api";
+import {store} from "../utils/core/Store";
 import {MyRouter, routs} from "../index";
 import {IChangeData, IChangePassword} from "../api/user-api";
 
@@ -15,7 +15,6 @@ class UserController {
                     })
             )
             .catch(() => {
-                console.log("error");
                 MyRouter.go(routs.errorPage);
             })
     }
@@ -25,7 +24,6 @@ class UserController {
         userApi.changePassword(data)
             .then(() => MyRouter.go(routs.profilePage))
             .catch(() => {
-                console.log("error");
                 MyRouter.go(routs.errorPage);
             })
     }
@@ -49,4 +47,5 @@ class UserController {
 
 }
 
-export default new UserController();
+const userController = new UserController();
+export {userController};

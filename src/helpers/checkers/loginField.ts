@@ -1,4 +1,4 @@
-export default function isValidLogin(val: string) {
+export function isValidLogin(val: string) {
   console.log("isValidLogin");
   if (val === "") {
     return { error: true, errorText: "поле не должно быть пустым" };

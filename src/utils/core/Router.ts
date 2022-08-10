@@ -1,12 +1,10 @@
-import Route from "./Route";
+import {Route} from "./Route";
 import {TProps} from "./Block";
-import store from "./Store";
+import {store} from "./Store";
 import {routs} from "../../index";
-// import store from "./Store";
-// import {routs} from "../../index";
 
 
-class Router {
+export class Router {
     private static __instance: Router;
     private routes: Route[] | undefined;
     private history: History | undefined;
@@ -24,6 +22,7 @@ class Router {
     }
 
     use(pathname: string, block: any, props?: TProps) {
+        console.log("create route", pathname)
         const route = new Route(pathname, block, {...props, rootQuery: "#root"});
         (this.routes as Route[]).push(route);
         return this;
@@ -55,8 +54,7 @@ class Router {
     go(pathname: string) {
         console.log(pathname);
         console.log(store.getState().user);
-        if (store.getState().user || pathname === routs.helloPage ||
-            pathname === routs.signUpPage || pathname === routs.errorPage) {
+        if (store.getState().user || pathname === routs.signUpPage || pathname === routs.errorPage) {
             (this.history as History).pushState({}, "", pathname);
             this._onRoute(pathname);
         } else {
@@ -78,5 +76,3 @@ class Router {
     }
 
 }
-
-export default Router;

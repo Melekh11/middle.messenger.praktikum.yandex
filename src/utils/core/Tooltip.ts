@@ -1,4 +1,4 @@
-import ProxyProps from "./ProxyProps";
+import {ProxyProps} from "./ProxyProps";
 
 (function () {
   class Tooltip {

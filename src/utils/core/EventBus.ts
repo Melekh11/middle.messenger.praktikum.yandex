@@ -1,4 +1,4 @@
-export default class EventBus {
+export class EventBus {
   protected listeners: Record<string, Function[]>;
 
   constructor() {

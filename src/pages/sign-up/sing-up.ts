@@ -1,18 +1,17 @@
-import Block from "../../utils/core/Block";
-import {TProps} from "../../utils/core/Block";
-import Input from "../../components/input/input";
-import ButtonBack from "../../components/button-back/button-back";
-import SubmitButton from "../../components/submit-button/submit-button";
+import {Block} from "../../utils/core/Block";
+import {Input} from "../../components/input/input";
+import {ButtonBack} from "../../components/button-back/button-back";
+import {SubmitButton} from "../../components/submit-button/submit-button";
 import "./sign-up.less";
 import singUpTemplate from "./sign-up.pug";
-import authController from "../../controllers/auth-controller";
+import {authController} from "../../controllers/auth-controller";
 
 function shortInputInit(
     textLabel: string,
     inputName: string,
     inputCheckType: string,
     inputType: string = "text"
-) {
+): Input {
     return new Input({
         textLabel: textLabel,
         inputClass: "inlineText",
@@ -22,11 +21,21 @@ function shortInputInit(
     });
 }
 
-export default class SignUpPage extends Block {
-    constructor(props: TProps) {
+type SignUpProps = {
+    btnBack: ButtonBack;
+    inputFirstName: Input;
+    inputSecondName: Input;
+    inputLogin: Input;
+    inputEmail: Input;
+    inputPhone: Input;
+    inputPassword: Input;
+    submitBtn: SubmitButton;
+}
+
+export class SignUpPage extends Block<SignUpProps> {
+    constructor() {
         super("div", {
-            ...props,
-            btnBack: new ButtonBack({}),
+            btnBack: new ButtonBack(),
             inputFirstName: shortInputInit("короткое имя", "first_name", "name"),
             inputSecondName: shortInputInit("полное имя", "second_name", "name"),
             inputLogin: shortInputInit("логин", "login", "login"),
