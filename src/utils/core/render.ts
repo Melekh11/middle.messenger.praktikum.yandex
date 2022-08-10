@@ -1,5 +1,4 @@
-export default function render(query: string, block: any) {
-    console.log("!!!!!")
+export function render(query: string, block: any) {
     const root = document.querySelector(query);
     if (!root) {
         return;

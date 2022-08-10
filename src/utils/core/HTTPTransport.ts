@@ -47,6 +47,10 @@ class HTTPTransport {
     request(url: string, options: Options = {method: Methods.GET}): Promise<XMLHttpRequest> {
         let {data, method, headers} = options;
 
+        if (data instanceof FormData){
+            headers = {};
+        }
+
         if (method === Methods.GET) {
             url += queryStringify(data);
         }

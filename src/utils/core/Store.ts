@@ -1,5 +1,5 @@
-import set from "../../helpers/mydash/set"
-import EventBus from "./EventBus";
+import {set} from "../../helpers/mydash/set"
+import {EventBus} from "./EventBus";
 
 
 export enum StoreEvents {
@@ -20,4 +20,5 @@ class Store extends EventBus{
     };
 }
 
-export default new Store();
+const store = new Store();
+export {store};

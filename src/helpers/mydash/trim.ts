@@ -9,4 +9,4 @@ function trim(str: string, strForbChr?: string): string {
 
 }
 
-export default trim;
+export {trim};

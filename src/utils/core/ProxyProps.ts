@@ -26,4 +26,4 @@ function ProxyProps(props: any) {
   });
 }
 
-export { ProxyProps as default };
+export { ProxyProps };

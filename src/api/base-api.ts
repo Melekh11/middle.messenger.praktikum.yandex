@@ -6,13 +6,15 @@ interface IHTTPTransport {
     headers?: Record<string, string>
 }
 
+type HTTPOption = Record<string, any>
+
 const host = 'https://ya-praktikum.tech/api/v2';
 
 const defaultHeaders = {
     "Content-type": 'application/json; charset=UTF-8'
 };
 
-class BaseAPI {
+class BaseApi {
     protected transport: HTTPTransport;
     protected baseUrl: string;
     protected path: string;
@@ -38,14 +40,14 @@ class BaseAPI {
         return `${this.baseUrl}${this.path}${endpoint}`
     }
 
-    getOptions(newOptions?: Record<any, any>) {
+    getOptions(newOptions?: HTTPOption) {
         const options = newOptions || {};
         options.headers = newOptions?.headers || this.headers;
         console.log("options", options, options.headers);
         return options;
     }
 
-    get(endpoint: string, options?: Record<any, any>) {
+    get(endpoint: string, options?: HTTPOption) {
         if (options) {
             return this.transport.get(this.getFullPath(endpoint), this.getOptions(options))
         } else {
@@ -54,7 +56,7 @@ class BaseAPI {
     }
 
 
-    post(endpoint: string, options?: Record<any, any>) {
+    post(endpoint: string, options?: HTTPOption) {
         if (options) {
             return this.transport.post(this.getFullPath(endpoint), this.getOptions(options))
         } else {
@@ -63,7 +65,7 @@ class BaseAPI {
     }
 
 
-    put(endpoint: string, options?: Record<any, any>) {
+    put(endpoint: string, options?: HTTPOption) {
         if (options) {
             return this.transport.put(this.getFullPath(endpoint), this.getOptions(options))
         } else {
@@ -71,7 +73,7 @@ class BaseAPI {
         }
     }
 
-    delete(endpoint: string, options?: Record<any, any>) {
+    delete(endpoint: string, options?: HTTPOption) {
         if (options) {
             return this.transport.delete(this.getFullPath(endpoint), this.getOptions(options))
         } else {
@@ -80,8 +82,4 @@ class BaseAPI {
     }
 }
 
-
-
-export default BaseAPI;
-export {IHTTPTransport, host};
-
+export {BaseApi, IHTTPTransport, host};

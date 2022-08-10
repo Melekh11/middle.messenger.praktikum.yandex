@@ -1,10 +1,10 @@
-import isValidName from "./nameField";
-import isValidLogin from "./loginField";
-import isValidEmail from "./emailField";
-import isValidPhone from "./phoneField";
-import isValidPassword from "./passwordField";
+import {isValidName} from "./nameField";
+import {isValidLogin} from "./loginField";
+import {isValidEmail} from "./emailField";
+import {isValidPhone} from "./phoneField";
+import {isValidPassword} from "./passwordField";
 
-export default function checkError(
+export  function checkError(
     val: string,
     typeInput: string
 ) {

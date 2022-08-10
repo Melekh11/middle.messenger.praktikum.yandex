@@ -1,14 +1,25 @@
 import "./change-profile.less";
 import changeProfTemplate from "./change-profile.pug";
-import {TProps} from "../../utils/core/Block";
-import Block from "../../utils/core/Block";
-import Input from "../../components/input/input";
-import SubmitButton from "../../components/submit-button/submit-button";
-import ButtonBack from "../../components/button-back/button-back";
-import userController from "../../controllers/user-controller";
-import connect from "../../utils/core/HOC";
+import {Block} from "../../utils/core/Block";
+import {Input} from "../../components/input/input";
+import {SubmitButton} from "../../components/submit-button/submit-button";
+import {ButtonBack} from "../../components/button-back/button-back";
+import {userController} from "../../controllers/user-controller";
+import {connect} from "../../utils/core/HOC";
 import avatarDefault from "../../static/img/ava.png";
 
+type ChangeProfileProps = {
+    avatar: string;
+    btnBack: ButtonBack;
+    inputFirstName : Input;
+    inputSecondName: Input;
+    inputLogin: Input;
+    inputEmail: Input;
+    inputPhone: Input;
+    sbmButtonData: SubmitButton;
+    sbmButtonImage: SubmitButton;
+
+}
 
 function fastInputInit(textLabel: string, inputName: string, inputCheckType: string) {
     return new Input({
@@ -20,11 +31,11 @@ function fastInputInit(textLabel: string, inputName: string, inputCheckType: str
     });
 }
 
-class ChangeProfilePage extends Block {
-    constructor(props: TProps) {
+class ChangeProfilePage extends Block<ChangeProfileProps> {
+    constructor(props: ChangeProfileProps) {
         super("div", {
             ...props,
-            btnBack: new ButtonBack({}),
+            btnBack: new ButtonBack(),
             inputFirstName: fastInputInit("короткое имя", "first_name", "name"),
             inputSecondName: fastInputInit("полное имя", "second_name", "name"),
             inputLogin: fastInputInit("логин", "login", "login"),
@@ -95,5 +106,5 @@ function mapChangeProfile(store: any) {
 }
 
 const con = connect(mapChangeProfile);
-export default con(ChangeProfilePage);
-
+const changeProfile = con(ChangeProfilePage);
+export  {changeProfile as ChangeProfilePage};

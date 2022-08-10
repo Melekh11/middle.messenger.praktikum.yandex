@@ -1,4 +1,4 @@
-export default function isValidName(value: string) {
+export function isValidName(value: string) {
   if (value === "") {
     return { error: true, errorText: "поле не должно быть пустое!" };
   }

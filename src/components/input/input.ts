@@ -1,14 +1,23 @@
 import "./input.less";
 import inputTemplate from "./input.pug";
-import Block from "../../utils/core/Block";
 import {v4 as makeUUID} from "uuid";
-import checkError from "../../helpers/checkers/handlerError";
-import {TProps} from "../../utils/core/Block";
+import {checkError} from "../../helpers/checkers/handlerError";
+import {Block} from "../../utils/core/Block";
 
-export default class Input extends Block {
+type InputProps = {
+    inputPlaceholder?: string;
+    textLabel?: string;
+    idInput?: string;
+    inputCheckType: string;
+    inputClass: string;
+    inputType: string;
+    inputName: string;
+}
+
+export class Input extends Block <InputProps> {
     public isError: boolean;
 
-    constructor(props: TProps) {
+    constructor(props: InputProps) {
         super("div", {
             ...props,
             idInput: makeUUID(),

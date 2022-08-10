@@ -1,4 +1,4 @@
-import BaseApi from "./base-api";
+import {BaseApi} from "./base-api";
 
 interface IUserData {
     first_name: string,
@@ -15,12 +15,12 @@ interface IChangePassword {
 }
 
 interface IChangeData{
-    "first_name": string,
-    "second_name": string,
-    "display_name": string | null,
-    "login": string,
-    "email": string,
-    "phone": string
+    first_name: string,
+    second_name: string,
+    display_name: string | null,
+    login: string,
+    email: string,
+    phone: string
 }
 
 
@@ -38,7 +38,6 @@ class UserApi extends BaseApi {
     public changeAva(data: FormData) {
         console.log(data);
         return this.put("/profile/avatar", {
-            headers: {},
             data: data
         })
     }

@@ -1,12 +1,11 @@
-import Block from "../../utils/core/Block";
-import {TProps} from "../../utils/core/Block";
+import {TProps, Block} from "../../utils/core/Block";
 import "./modal-add-chat.less";
 import linkModal from "./modal-add-chat.pug";
-import chatsController from "../../controllers/chats-controller";
-import userController from "../../controllers/user-controller";
-import Button from "../button/button";
-import chatsApi from "../../api/chats-api";
-import store from "../../utils/core/Store";
+import {chatsController} from "../../controllers/chats-controller";
+import {userController} from "../../controllers/user-controller";
+import {Button} from "../button/button";
+import {chatsApi} from "../../api/chats-api";
+import {store} from "../../utils/core/Store";
 
 export interface IUser {
     "id": number,
@@ -19,7 +18,12 @@ export interface IUser {
     "avatar": string | null;
 }
 
-export default class ModalAddChat extends Block {
+type ModalAddChatProps = {
+    btnCreateChat: Button;
+    events: Record<string, any>;
+}
+
+export class ModalAddChat extends Block <ModalAddChatProps> {
     constructor(props?: TProps) {
         super("div", {
             ...props,
@@ -42,7 +46,10 @@ export default class ModalAddChat extends Block {
                                     const users = allUsers.filter((user) => {
                                         return user.login === loginToInvite
                                     })
-                                    const user = users[0];
+                                    let user = users[0];
+                                    if(!user){
+                                        user = allUsers[0];
+                                    }
                                     if (user) {
                                         await chatsController.createChat(titleChat)
                                             .then(async (chat) => {

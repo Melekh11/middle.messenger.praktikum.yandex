@@ -1,19 +1,26 @@
-import Block from "../../utils/core/Block";
-import {TProps} from "../../utils/core/Block";
-import Input from "../../components/input/input";
-import SubmitButton from "../../components/submit-button/submit-button";
-import ButtonBack from "../../components/button-back/button-back";
+import {Block} from "../../utils/core/Block";
+import {Input} from "../../components/input/input";
+import {SubmitButton} from "../../components/submit-button/submit-button";
+import {ButtonBack} from "../../components/button-back/button-back";
 import changeProfTemplate from "./change-password.pug";
 import "./change-password.less";
-import userController from "../../controllers/user-controller";
+import {userController} from "../../controllers/user-controller";
 import avatarDefault from "../../static/img/ava.png";
-import connect from "../../utils/core/HOC";
+import {connect} from "../../utils/core/HOC";
 
-class ChangePasswordPage extends Block {
-    constructor(props: TProps) {
+type ChangePasswordProps = {
+    avatar: string;
+    btnBack: ButtonBack;
+    btnSubmit: SubmitButton;
+    inputOldPassword: Input;
+    inputNewPassword: Input;
+}
+
+class ChangePasswordPage extends Block<ChangePasswordProps> {
+    constructor(props: ChangePasswordProps) {
         super("div", {
             ...props,
-            btnBack: new ButtonBack({}),
+            btnBack: new ButtonBack(),
             btnSubmit: new SubmitButton({
                 text: "изменить",
                 events: {
@@ -78,5 +85,6 @@ function mapChangeProfile(store: any){
 }
 
 const con = connect(mapChangeProfile);
-export default con(ChangePasswordPage);
+const changePassword = con(ChangePasswordPage);
+export {changePassword as ChangePasswordPage} ;
 

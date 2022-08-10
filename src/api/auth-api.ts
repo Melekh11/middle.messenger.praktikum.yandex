@@ -1,6 +1,4 @@
-import BaseApi from "./base-api";
-
-// import HTTPTransport from "../utils/core/HTTPTransport";
+import {BaseApi} from "./base-api";
 
 interface ISingUp {
     first_name: string,
@@ -43,5 +41,5 @@ class AuthAPI extends BaseApi {
 }
 
 
-export default new AuthAPI()
-export {ISingIn, ISingUp}
+const authApi = new AuthAPI();
+export {authApi, ISingIn, ISingUp}

@@ -1,14 +1,21 @@
-import Block from "../../utils/core/Block";
-import Input from "../input/input";
+import {Input} from "../input/input";
 import "./dialog-field.less";
 import dialogTemplate from "./dialog-field.pug";
-import {TProps} from "../../utils/core/Block";
-import connect from "../../utils/core/HOC";
-import Button from "../button/button";
-import store from "../../utils/core/Store";
+import {Block} from "../../utils/core/Block";
+import {connect} from "../../utils/core/HOC";
+import {Button} from "../button/button";
+import {store} from "../../utils/core/Store";
 
-class DialogField extends Block {
-    constructor(props: TProps) {
+type DialogFieldProps = {
+    currentChat: number;
+    idChat: number;
+    dialogChosen: boolean
+    inputMessage: Input;
+    btnSendMessage: Button;
+}
+
+class DialogField extends Block <DialogFieldProps> {
+    constructor(props: DialogFieldProps) {
         super("div", {
             ...props,
             idChat: props.currentChat,
@@ -55,4 +62,5 @@ function mapToDialog(store: any) {
 }
 
 const con = connect(mapToDialog);
-export default con(DialogField);
+const dialogField = con(DialogField);
+export {dialogField as DialogField};

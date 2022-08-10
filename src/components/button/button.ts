@@ -1,10 +1,14 @@
 import btnTemplate from "./button.pug";
-import Block from "../../utils/core/Block";
-import {TProps} from "../../utils/core/Block"
+import {Block} from "../../utils/core/Block"
 
+type ButtonProps = {
+    className: string;
+    btnText: string;
+    events?: Record<string, any>;
+}
 
-export default class Button extends Block {
-    constructor(props: TProps) {
+export class Button extends Block<ButtonProps> {
+    constructor(props: ButtonProps) {
         super("div", props);
     }
 

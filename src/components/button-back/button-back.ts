@@ -1,14 +1,15 @@
 import "./button-back.less";
 import btnBackTemplate from "./button-back.pug";
-import Block from "../../utils/core/Block";
-import {TProps} from "../../utils/core/Block";
-import Router from "../../utils/core/Router";
+import {Block} from "../../utils/core/Block";
+import {Router} from "../../utils/core/Router";
 
+type ButtonBackProps = {
+    events: Record<string, any>
+}
 
-export default class ButtonBack extends Block {
-    constructor(props: TProps) {
+export class ButtonBack extends Block<ButtonBackProps> {
+    constructor() {
         super("div", {
-            ...props,
             events: {
                 click: () => {new Router().back()}
             }
