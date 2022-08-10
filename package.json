@@ -6,6 +6,7 @@
     "dev": "parcel src/index.html --port 3000",
     "start": "parcel build src/index.html && node server.js",
     "build": "parcel build src/index.html",
+    "linter": "node_modules/.bin/eslint src",
     "test": "parcel src/utils/test/test.html --port 5000"
   },
   "keywords": [],
