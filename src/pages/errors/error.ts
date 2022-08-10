@@ -1,32 +1,32 @@
 import "./error.less";
 import errorTemplate from "./error.pug";
-import {Block} from "../../utils/core/Block";
-import {ButtonBack} from "../../components/button-back/button-back";
+import { Block } from "../../utils/core/Block";
+import { ButtonBack } from "../../components/button-back/button-back";
 
 type ErrorProps = {
-    errorNumber: number;
-    errorName: string;
-    buttonBack: ButtonBack;
-}
+  errorNumber: number;
+  errorName: string;
+  buttonBack: ButtonBack;
+};
 
 export class ErrorPage extends Block<ErrorProps> {
-    constructor(props: ErrorProps) {
-        let errorName;
-        if (props.errorNumber === 404) {
-            errorName = "Ошибка 404";
-        } else {
-            errorName = "Ошибка 505";
-        }
-        super("div", {
-            ...props,
-            errorName: errorName,
-            buttonBack: new ButtonBack({}),
-        });
+  constructor(props: ErrorProps) {
+    let errorName;
+    if (props.errorNumber === 404) {
+      errorName = "Ошибка 404";
+    } else {
+      errorName = "Ошибка 505";
     }
+    super("div", {
+      ...props,
+      errorName: errorName,
+      buttonBack: new ButtonBack({}),
+    });
+  }
 
-    render() {
-        return this.compile(errorTemplate, {
-            errorName: this.props.errorName,
-        });
-    }
+  render() {
+    return this.compile(errorTemplate, {
+      errorName: this.props.errorName,
+    });
+  }
 }
