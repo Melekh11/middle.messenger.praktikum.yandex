@@ -6,8 +6,8 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.use('/*', (req, res) => {
-  res.redirect('/');
+app.use("/*", (req, res) => {
+  res.redirect("/");
 });
 
 app.get("/", function (req, res) {

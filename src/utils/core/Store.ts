@@ -11,7 +11,9 @@ class Store extends EventBus {
   constructor() {
     super();
     console.log("создаём store");
-    this.on(StoreEvents.Updated, () => {console.log("изменили store")});
+    this.on(StoreEvents.Updated, () => {
+      console.log("изменили store");
+    });
   }
 
   public getState(): Record<string, any> {
