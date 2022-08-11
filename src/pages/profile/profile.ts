@@ -20,7 +20,7 @@ type ProfileProps = {
     out: RoutedLink;
 }
 
-class ProfilePage extends Block<ProfileProps> {
+class Profile extends Block<ProfileProps> {
     constructor(props: ProfileProps) {
         console.log("create profile page");
         super("div", {
@@ -55,7 +55,8 @@ class ProfilePage extends Block<ProfileProps> {
 function mapProfile(store: any) {
     let ava: string;
     if (store.user){
-        ava = "https://ya-praktikum.tech/api/v2/resources/" + store.user.avatar;
+        if (store.user.avatar) ava = "https://ya-praktikum.tech/api/v2/resources/" + store.user.avatar;
+        else ava = avatarDefault
         return {
             fullName: store.user.first_name,
             shortName: store.user.second_name,
@@ -76,10 +77,12 @@ function mapProfile(store: any) {
             avatar: ava
         };
     }
-
 }
 
 
+// ошибки Cannot redeclare block-scoped variable 'con', Duplicate identifier 'ProfilePage',
+// Declaration or statement expected
+// всё работает и в других файлах на подобное не жалуется
 const con = connect(mapProfile);
-const profilePage = con(ProfilePage);
-export {profilePage as ProfilePage};
+const profile = con(Profile);
+export {profile as ProfilePage};

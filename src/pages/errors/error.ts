@@ -20,7 +20,7 @@ export class ErrorPage extends Block<ErrorProps> {
         super("div", {
             ...props,
             errorName: errorName,
-            buttonBack: new ButtonBack({}),
+            buttonBack: new ButtonBack(),
         });
     }
 
