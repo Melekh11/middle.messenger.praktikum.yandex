@@ -11,6 +11,7 @@ function connect(mapStateToProps: (state: TProps) => any) {
         super({ ...props, ...state });
 
         // подписываемся на событие
+        console.log("подписались на событие", StoreEvents.Updated);
         store.on(StoreEvents.Updated, () => {
           console.log("подписываемся на событие,", state);
           const newState = mapStateToProps(store.getState());

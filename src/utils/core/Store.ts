@@ -8,6 +8,12 @@ export enum StoreEvents {
 class Store extends EventBus {
   private state: Record<string, any> = {};
 
+  constructor() {
+    super();
+    console.log("создаём store");
+    this.on(StoreEvents.Updated, () => {console.log("изменили store")});
+  }
+
   public getState(): Record<string, any> {
     return this.state;
   }
