@@ -11,7 +11,7 @@ import {store} from "./utils/core/Store";
 import {authController} from "./controllers/auth-controller";
 
 
-enum routs {
+export enum routs {
     signUpPage = "/sign-up",
     changeProfilePage = "/settings",
     chatsPage = "/messenger",
@@ -21,7 +21,8 @@ enum routs {
     errorPage = "/error"
 }
 
-const MyRouter = new Router();
+// @ts-ignore какая-то странная ошибка Cannot redeclare exported variable 'MyRouter', в гугле ничего толкового не нашёл
+export const MyRouter = new Router();
 MyRouter
     .use(routs.signUpPage, SignUpPage)
     .use(routs.profilePage, ProfilePage, {
@@ -45,5 +46,3 @@ if (store.getState().user) {
     authController.singOut();
     MyRouter.go(routs.signInPage);
 }
-
-export {MyRouter, routs};
