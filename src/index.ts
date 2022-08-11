@@ -46,3 +46,4 @@ if (store.getState().user) {
     authController.singOut();
     MyRouter.go(routs.signInPage);
 }
+MyRouter.start();
