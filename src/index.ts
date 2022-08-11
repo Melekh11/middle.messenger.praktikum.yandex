@@ -36,8 +36,7 @@ MyRouter
     .use(routs.chatsPage, ChatsPage)
     .use(routs.signInPage, SignInPage)
     .use(routs.changePasswordPage, ChangePasswordPage)
-    .use(routs.errorPage, ErrorPage, {errorNumber: 404})
-    .start();
+    .use(routs.errorPage, ErrorPage, {errorNumber: 404});
 
 
 if (store.getState().user) {
