@@ -4,7 +4,7 @@ export function isValidPhone(val: string) {
   } else if (val.length > 15 || val.length < 10) {
     return {
       error: true,
-      errorText: "длинна должна быть от 10 до 15 символом",
+      errorText: "длинна  должна быть от 10 до 15 символом",
     };
   } else if (/[a-zA-Zа-яА-Я]/.test(val)) {
     return { error: true, errorText: "недопустимые значения" };
