@@ -33,7 +33,8 @@ MyRouter.use(routs.signUpPage, SignUpPage)
     .use(routs.chatsPage, ChatsPage)
     .use(routs.signInPage, SignInPage)
     .use(routs.changePasswordPage, ChangePasswordPage)
-    .use(routs.errorPage, ErrorPage, { errorNumber: 404 })
-    .start();
+    .use(routs.errorPage, ErrorPage, { errorNumber: 404 });
 
 checkAuth();
+
+MyRouter.start();
