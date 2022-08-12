@@ -34,6 +34,7 @@ class AuthController {
                 authApi.userInfo()
                     .then(async (data) => {
                         await store.setState("user", data.response);
+                        await store.setState("currentChat", false);
                         await chatsController.getAllChats()
                             .then(async (data) => {
                                 await store.setState("chats", data.response);
@@ -50,8 +51,12 @@ class AuthController {
     public singOut() {
         authApi.logOut()
             .then(() => {
-                MyRouter.go(routs.signInPage);
+                console.log("doing logout");
                 store.setState("user", undefined);
+                // store.setState("chats", undefined);
+                store.setState("currentChat", false);
+                MyRouter.go(routs.signInPage);
+
             })
     }
 

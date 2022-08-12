@@ -12,7 +12,6 @@ function connect(mapStateToProps: (state: TProps) => any){
 
                 // подписываемся на событие
                 store.on(StoreEvents.Updated, () => {
-                    console.log("подписываемся на событие,", state);
                     const newState = mapStateToProps(store.getState());
                     if (!isEqual(newState, state)) {
                         // вызываем обновление компонента, передав данные из хранилища
