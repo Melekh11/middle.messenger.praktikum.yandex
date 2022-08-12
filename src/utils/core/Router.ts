@@ -51,7 +51,7 @@ export class Router {
   }
 
   go(pathname: string) {
-    console.log(pathname);
+    console.log("cookie", document.cookie);
     console.log(store.getState().user);
     if (
       store.getState().user ||

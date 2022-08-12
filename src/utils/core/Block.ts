@@ -157,11 +157,9 @@ export abstract class Block<TProps extends {}> {
   }
 
   private _delEvents() {
-    console.log(this.props);
     // @ts-ignore
     let { events } = this.props;
     events = events || {};
-    console.log(events);
     Object.keys(events).forEach((eventName) => {
       this.getContent().removeEventListener(eventName, events[eventName]);
     });

@@ -28,6 +28,10 @@ type ChatsProps = {
 class ChatsPage extends Block<ChatsProps> {
   constructor(props: ChatsProps) {
     let cardList: ContactCard[] = [];
+    for (const val in store.getState()){
+      console.log("ня", val);
+    }
+    console.log(store.getState());
     for (let user of store.getState().chats) {
       cardList.push(new ContactCard(user));
     }
@@ -83,6 +87,7 @@ class ChatsPage extends Block<ChatsProps> {
 
   compile(template: string, props: TProps) {
     this.props.cardList = [];
+    console.log(store.getState());
     for (let user of store.getState().chats) {
       this.props.cardList.push(new ContactCard(user));
     }
