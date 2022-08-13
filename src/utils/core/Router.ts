@@ -1,13 +1,17 @@
-import { Route } from "./Route";
-import { TProps } from "./Block";
-import { store } from "./Store";
-import { routs } from "../../index";
+import {Route} from "./Route";
+import {TProps} from "./Block";
+import {store} from "./Store";
+import {routs} from "../../index";
+import {deleteCookie} from "../cookie/delete-cookie";
+import {setCookie} from "../cookie/set-cookie";
+// import {setCookie} from "../cookie/set-cookie";
+
 
 export class Router {
   private static __instance: Router;
   private routes: Route[] | undefined;
   private history: History | undefined;
-  private _currentRoute: Route | null | undefined;
+  public currentRoute: Route | null | undefined;
 
   constructor() {
     if (Router.__instance) {
@@ -16,13 +20,13 @@ export class Router {
 
     this.routes = [];
     this.history = window.history;
-    this._currentRoute = null;
+    this.currentRoute = null;
     Router.__instance = this;
   }
 
   use(pathname: string, block: any, props?: TProps) {
-    console.log("create route", pathname);
-    const route = new Route(pathname, block, { ...props, rootQuery: "#root" });
+    console.log("create route", pathname)
+    const route = new Route(pathname, block, {...props, rootQuery: "#root"});
     (this.routes as Route[]).push(route);
     return this;
   }
@@ -42,20 +46,18 @@ export class Router {
       return;
     }
 
-    if (this._currentRoute) {
-      this._currentRoute.leave();
+    if (this.currentRoute) {
+      this.currentRoute.leave();
     }
 
-    this._currentRoute = route;
+    this.currentRoute = route;
     route.render();
   }
 
   go(pathname: string) {
-    if (
-      store.getState().user ||
-      pathname === routs.signUpPage ||
-      pathname === routs.errorPage
-    ) {
+    deleteCookie("lastRoute");
+    setCookie("lastRoute", pathname);
+    if (store.getState().user || pathname === routs.signUpPage || pathname === routs.errorPage) {
       (this.history as History).pushState({}, "", pathname);
       this._onRoute(pathname);
     } else {
@@ -73,6 +75,7 @@ export class Router {
   }
 
   getRoute(pathname: string) {
-    return (this.routes as Route[]).find((route) => route.match(pathname));
+    return (this.routes as Route[]).find(route => route.match(pathname));
   }
+
 }
