@@ -70,6 +70,10 @@ class AuthController {
           MyRouter.go(routs.errorPage);
         })
   }
+
+  public isLogin(){
+      return authApi.userInfo();
+  }
 }
 
 const authController = new AuthController();
