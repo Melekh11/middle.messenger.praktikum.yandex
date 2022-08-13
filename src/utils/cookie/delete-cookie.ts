@@ -1,7 +1,7 @@
-import {setCookie} from "./set-cookie";
+import { setCookie } from "./set-cookie";
 
 export function deleteCookie(name: string) {
-    setCookie(name, "", {
-        'max-age': -1
-    })
+  setCookie(name, "", {
+    "max-age": -1,
+  });
 }

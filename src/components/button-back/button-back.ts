@@ -1,28 +1,28 @@
 import "./button-back.less";
 import btnBackTemplate from "./button-back.pug";
-import {Block} from "../../utils/core/Block";
-import {authController} from "../../controllers/auth-controller";
-import {MyRouter, routs} from "../../index";
+import { Block } from "../../utils/core/Block";
+import { authController } from "../../controllers/auth-controller";
+import { MyRouter, routs } from "../../index";
 
 type ButtonBackProps = {
-  events: Record<string, any>
-}
+  events: Record<string, any>;
+};
 
 export class ButtonBack extends Block<ButtonBackProps> {
   constructor() {
     super("div", {
       events: {
         click: () => {
-          authController.isLogin()
-              .then(() => {
-                MyRouter.go(routs.chatsPage);
-              })
-              .catch(() => {
-                MyRouter.go(routs.signInPage);
-              })
-
-        }
-      }
+          authController
+            .isLogin()
+            .then(() => {
+              MyRouter.go(routs.chatsPage);
+            })
+            .catch(() => {
+              MyRouter.go(routs.signInPage);
+            });
+        },
+      },
     });
   }
 

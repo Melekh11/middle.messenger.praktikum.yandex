@@ -1,11 +1,10 @@
-import {Route} from "./Route";
-import {TProps} from "./Block";
-import {store} from "./Store";
-import {routs} from "../../index";
-import {deleteCookie} from "../cookie/delete-cookie";
-import {setCookie} from "../cookie/set-cookie";
+import { Route } from "./Route";
+import { TProps } from "./Block";
+import { store } from "./Store";
+import { routs } from "../../index";
+import { deleteCookie } from "../cookie/delete-cookie";
+import { setCookie } from "../cookie/set-cookie";
 // import {setCookie} from "../cookie/set-cookie";
-
 
 export class Router {
   private static __instance: Router;
@@ -25,8 +24,8 @@ export class Router {
   }
 
   use(pathname: string, block: any, props?: TProps) {
-    console.log("create route", pathname)
-    const route = new Route(pathname, block, {...props, rootQuery: "#root"});
+    console.log("create route", pathname);
+    const route = new Route(pathname, block, { ...props, rootQuery: "#root" });
     (this.routes as Route[]).push(route);
     return this;
   }
@@ -57,7 +56,11 @@ export class Router {
   go(pathname: string) {
     deleteCookie("lastRoute");
     setCookie("lastRoute", pathname);
-    if (store.getState().user || pathname === routs.signUpPage || pathname === routs.errorPage) {
+    if (
+      store.getState().user ||
+      pathname === routs.signUpPage ||
+      pathname === routs.errorPage
+    ) {
       (this.history as History).pushState({}, "", pathname);
       this._onRoute(pathname);
     } else {
@@ -75,7 +78,6 @@ export class Router {
   }
 
   getRoute(pathname: string) {
-    return (this.routes as Route[]).find(route => route.match(pathname));
+    return (this.routes as Route[]).find((route) => route.match(pathname));
   }
-
 }
