@@ -36,5 +36,3 @@ MyRouter.use(routs.signUpPage, SignUpPage)
     .use(routs.errorPage, ErrorPage, { errorNumber: 404 });
 
 checkAuth();
-
-MyRouter.start();

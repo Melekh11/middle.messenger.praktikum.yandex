@@ -43,7 +43,6 @@ class BaseApi {
     getOptions(newOptions?: HTTPOption) {
         const options = newOptions || {};
         options.headers = newOptions?.headers || this.headers;
-        console.log("options", options, options.headers);
         return options;
     }
 
