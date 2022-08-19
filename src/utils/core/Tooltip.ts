@@ -1,4 +1,4 @@
-import ProxyProps from "./ProxyProps";
+import { ProxyProps } from "./ProxyProps";
 
 (function () {
   class Tooltip {
@@ -28,7 +28,7 @@ import ProxyProps from "./ProxyProps";
 
     onShow = (event: Event) => {
       const sourceEl = event.target as HTMLElement;
-      if (!sourceEl){
+      if (!sourceEl) {
         return;
       }
       this.el.innerHTML = sourceEl.getAttribute("data-tooltip") || "";
@@ -52,10 +52,15 @@ import ProxyProps from "./ProxyProps";
       this.el.classList.remove(`${this.name}_active`);
     }
 
-    delegate(eventName: string, element: HTMLElement, cssSelector: string, callback: Function) {
+    delegate(
+      eventName: string,
+      element: HTMLElement,
+      cssSelector: string,
+      callback: Function
+    ) {
       const fn = (event: Event) => {
-        let target = event.target ;
-        if (!target){
+        let target = event.target;
+        if (!target) {
           return;
         }
         let targetHTML = target as HTMLElement;
@@ -82,7 +87,10 @@ import ProxyProps from "./ProxyProps";
 
     detach() {
       for (const { fn, element, eventName } of this.listeners) {
-        (element as HTMLElement).removeEventListener((eventName as keyof HTMLElementEventMap), (fn as EventListenerOrEventListenerObject));
+        (element as HTMLElement).removeEventListener(
+          eventName as keyof HTMLElementEventMap,
+          fn as EventListenerOrEventListenerObject
+        );
       }
 
       this.listeners = [];
@@ -93,5 +101,3 @@ import ProxyProps from "./ProxyProps";
   const tooltip = new Tooltip();
   tooltip.attach(document.body);
 })();
-
-

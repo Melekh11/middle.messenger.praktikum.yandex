@@ -1,4 +1,4 @@
-export default class EventBus {
+export class EventBus {
   protected listeners: Record<string, Function[]>;
 
   constructor() {
@@ -18,7 +18,7 @@ export default class EventBus {
     }
 
     this.listeners[event] = this.listeners[event].filter(
-      listener => listener !== callback
+      (listener) => listener !== callback
     );
   }
 
@@ -27,9 +27,8 @@ export default class EventBus {
       throw new Error(`события ${event} не существует`);
     }
 
-    this.listeners[event].forEach(listener => {
-      console.log(listener);
-      listener({...args});
+    this.listeners[event].forEach((listener) => {
+      listener({ ...args });
     });
   }
 }

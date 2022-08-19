@@ -1,33 +1,16 @@
-import Block from "../../utils/core/Block";
-import {TProps} from "../../utils/core/Block";
-import "./submit-button.less"
+import { Block } from "../../utils/core/Block";
+import "./submit-button.less";
 import btnSubTemplate from "./submit-button.pug";
 
-export default class SubmitButton extends Block {
-  constructor(props: TProps) {
+type SubmitButtonProps = {
+  text: string;
+  events: Record<string, any>;
+};
+
+export class SubmitButton extends Block<SubmitButtonProps> {
+  constructor(props: SubmitButtonProps) {
     super("div", {
       ...props,
-      events: {
-        click: (event: Event) => {
-          const target = event.target as HTMLElement;
-          const form = target.closest("form");
-          if (!form){
-            return;
-          }
-          const pInTemplate: NodeListOf<HTMLParagraphElement> = form.querySelectorAll(".input-error");
-          for (const p of pInTemplate) {
-            if (p.style.display !== "none") {
-              console.log("не все данные валидны!");
-              return;
-            }
-          }
-          const inputsInTemplate: NodeListOf<HTMLInputElement> = form.querySelectorAll(".inlineText");
-          for (const input of inputsInTemplate) {
-            console.log(input.value);
-          }
-          window["renderPage"]("profilePage");
-        },
-      },
     });
   }
 

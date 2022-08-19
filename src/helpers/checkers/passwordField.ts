@@ -1,4 +1,4 @@
-export default function isValidPassword(val: string) {
+export function isValidPassword(val: string) {
   if (val === "") {
     return { error: true, errorText: "поле не должно быть пустым" };
   } else if (val.length > 40 || val.length < 8) {

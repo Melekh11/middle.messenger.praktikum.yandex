@@ -1,8 +1,6 @@
-import Block from "./Block";
-
-export default function render(query: string, block: Block) {
+export function render(query: string, block: any) {
   const root = document.querySelector(query);
-  if (!root){
+  if (!root) {
     return;
   }
   clearPage(root);

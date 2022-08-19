@@ -11,22 +11,29 @@ type Options = {
   headers?: any;
 };
 
-type OptionsWithoutMethod = Omit<Options, 'method'>;
-
+type OptionsWithoutMethod = Omit<Options, "method">;
 
 function queryStringify(data: Record<string, string>) {
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-  }, '?');
+  if (data) {
+    const keys = Object.keys(data);
+    return keys.reduce((result, key, index) => {
+      return `${result}${key}=${data[key]}${
+        index < keys.length - 1 ? "&" : ""
+      }`;
+    }, "?");
+  } else {
+    return "";
+  }
 }
 
 class HTTPTransport {
   get(url: string, options: OptionsWithoutMethod = {}) {
+    console.log("http GET");
     return this.request(url, { ...options, method: Methods.GET });
   }
 
   post(url: string, options: OptionsWithoutMethod = {}) {
+    console.log("http POST");
     return this.request(url, { ...options, method: Methods.POST });
   }
 
@@ -38,8 +45,15 @@ class HTTPTransport {
     return this.request(url, { ...options, method: Methods.DELETE });
   }
 
-  request(url: string, options: Options = { method: Methods.GET}): Promise<XMLHttpRequest> {
+  request(
+    url: string,
+    options: Options = { method: Methods.GET }
+  ): Promise<XMLHttpRequest> {
     let { data, method, headers } = options;
+
+    if (data instanceof FormData) {
+      headers = {};
+    }
 
     if (method === Methods.GET) {
       url += queryStringify(data);
@@ -53,13 +67,20 @@ class HTTPTransport {
         xhr.setRequestHeader(key, headers[key]);
       }
 
-      xhr.onload = function () {
-        resolve(xhr);
+      xhr.onload = () => {
+        if (xhr.status >= 300) {
+          reject(xhr);
+        } else {
+          resolve(xhr);
+        }
       };
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+
+      xhr.withCredentials = true;
+      xhr.responseType = "json";
 
       if (method === Methods.GET || !data) {
         xhr.send();
@@ -93,3 +114,6 @@ function fetchWithRetry(url: string, options: Record<string, any>): unknown {
     })
     .catch(onError);
 }
+
+export default HTTPTransport;
+export { fetchWithRetry };

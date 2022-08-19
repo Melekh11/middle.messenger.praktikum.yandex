@@ -1,10 +1,10 @@
-import EventBus from "./EventBus";
-import ProxyProps from "./ProxyProps";
+import { EventBus } from "./EventBus";
+import { ProxyProps } from "./ProxyProps";
 import { v4 as makeUUID } from "uuid";
 import { compile } from "pug";
 
 interface IChildren {
-  [key: string]: Block;
+  [key: string]: Block<TProps>;
 }
 
 export type TProps = Record<string, any>;
@@ -16,8 +16,8 @@ enum Events {
   FLOW_RENDER = "flow:render",
 }
 
-export default abstract class Block {
-  protected _element: HTMLElement;
+export abstract class Block<TProps extends {}> {
+  protected _element: HTMLElement | undefined;
   protected _meta;
   protected eventBus: Function;
   public props: TProps;
@@ -25,7 +25,7 @@ export default abstract class Block {
   public id: string | null = null;
 
   // создаём детей, пропсы, запускаем событие INIT
-  constructor(tagName: string = "div", propsAndChildren: TProps = {}) {
+  constructor(tagName: string = "div", propsAndChildren: TProps) {
     const eventBus = new EventBus();
 
     const { children, props } = this._getChildren(propsAndChildren);
@@ -45,7 +45,7 @@ export default abstract class Block {
     eventBus.emit(Events.INIT, {});
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Events.INIT, this.init.bind(this));
     eventBus.on(Events.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Events.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -60,7 +60,7 @@ export default abstract class Block {
   }
 
   // поднимаем себя и всех детей
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
 
     Object.values(this.children).forEach((child) => {
@@ -76,7 +76,7 @@ export default abstract class Block {
     this.eventBus().emit(Events.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -86,7 +86,6 @@ export default abstract class Block {
 
   componentDidUpdate(oldProps: TProps, newProps: TProps) {
     return oldProps !== newProps;
-
   }
 
   setProps = (nextProps: TProps) => {
@@ -94,7 +93,7 @@ export default abstract class Block {
       return;
     }
     Object.assign(this.props, nextProps);
-    this.eventBus().emit(Events.FLOW_CDM);
+    this.eventBus().emit(Events.FLOW_CDM, {});
     this.constantsActions();
   };
 
@@ -105,17 +104,15 @@ export default abstract class Block {
   }
 
   // обновляем события + рендерим элемент заново
-  _render() {
-    console.log(this.render)
+  private _render() {
     const block = this.render(); // render теперь возвращает DocumentFragment
-    console.log(block, "block");
     this._delEvents();
 
     const newElement = (block as unknown as HTMLElement).firstElementChild;
-    if (!newElement){
+    if (!newElement) {
       return;
     }
-    this._element.replaceWith(newElement);
+    this.getContent().replaceWith(newElement);
     (this._element as Element) = newElement;
     this._addEvents();
   }
@@ -126,14 +123,14 @@ export default abstract class Block {
   }
 
   getContent() {
-    return this.element;
+    return this.element as HTMLElement;
   }
 
-  _createDocumentElement(tagName: string) {
+  protected _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const element = document.createElement(tagName);
     if (this.props["withInternalID"] === true) {
-      if (!this.id){
+      if (!this.id) {
         return;
       }
       element.setAttribute("data-id", this.id);
@@ -141,32 +138,34 @@ export default abstract class Block {
     return element;
   }
 
-  show() {
+  show(): void {
     this.getContent().style.display = "flex"; // block по умолчанию
   }
 
-  hide() {
+  hide(): void {
     this.getContent().style.display = "none";
   }
 
   // работа с событиями
-  _addEvents() {
+  private _addEvents() {
+    // @ts-ignore
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
-      this._element.addEventListener(eventName, events[eventName]);
+      this.getContent().addEventListener(eventName, events[eventName]);
     });
   }
 
-  _delEvents() {
-    const { events = {} } = this.props;
-
+  private _delEvents() {
+    // @ts-ignore
+    let { events } = this.props;
+    events = events || {};
     Object.keys(events).forEach((eventName) => {
-      this._element.removeEventListener(eventName, events[eventName]);
+      this.getContent().removeEventListener(eventName, events[eventName]);
     });
   }
 
-  _getChildren(propsAndChildren: TProps) {
+  private _getChildren(propsAndChildren: TProps) {
     const children: Record<string, any> = {};
     const props: Record<string, any> = {};
 
@@ -181,8 +180,7 @@ export default abstract class Block {
     return { children, props };
   }
 
-  compile(template: string, props: TProps) {
-
+  compile(template: string, props: Record<string, any>) {
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
@@ -191,16 +189,17 @@ export default abstract class Block {
 
     const fragment = this._createDocumentElement("template");
 
-    if (!fragment){
-      console.log("return with nothing")
+    if (!fragment) {
+      console.log("return with nothing");
       return;
     }
     fragment.innerHTML = compile(template)(propsAndStubs);
 
-
-
     Object.values(this.children).forEach((child) => {
-      const stub = (fragment as any).content.querySelector(`[data-id="${child.id}"]`);
+      const stub = (fragment as any).content.querySelector(
+        `[data-id="${child.id}"]`
+      );
+
       stub.replaceWith(child.getContent());
     });
     return (fragment as any).content;

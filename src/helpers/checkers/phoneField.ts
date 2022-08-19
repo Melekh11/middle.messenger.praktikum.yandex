@@ -1,4 +1,4 @@
-export default function isValidPhone(val: string) {
+export function isValidPhone(val: string) {
   if (val === "") {
     return { error: true, errorText: "поле не должно быть пустое" };
   } else if (val.length > 15 || val.length < 10) {
