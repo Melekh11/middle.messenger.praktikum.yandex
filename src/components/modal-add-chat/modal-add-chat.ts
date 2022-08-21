@@ -76,7 +76,8 @@ export class ModalAddChat extends Block<ModalAddChatProps> {
                         // @ts-ignore как это сделать чтобы ts не ругался не понимаю
                         form.append(
                           "avatar",
-                          document.querySelector("#ava-chat").files[0]
+                            // @ts-ignore
+                          document.querySelector("#ava-chat")?.files[0]
                         );
                         form.append("chatId", chatId);
                         await chatsApi.addChatAva(form);

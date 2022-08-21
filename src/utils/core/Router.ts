@@ -9,7 +9,7 @@ import { setCookie } from "../cookie/set-cookie";
 export class Router {
   private static __instance: Router;
   private routes: Route[] | undefined;
-  private history: History | undefined;
+  public history: History | undefined;
   public currentRoute: Route | null | undefined;
 
   constructor() {
@@ -24,7 +24,6 @@ export class Router {
   }
 
   use(pathname: string, block: any, props?: TProps) {
-    console.log("create route", pathname);
     const route = new Route(pathname, block, { ...props, rootQuery: "#root" });
     (this.routes as Route[]).push(route);
     return this;

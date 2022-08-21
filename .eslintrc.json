@@ -4,7 +4,7 @@
   },
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "max-len": [2, 100],
     "quotes": [2, "double"],
