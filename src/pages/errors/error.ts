@@ -1,5 +1,5 @@
 import "./error.less";
-import errorTemplate from "./error.pug";
+import {template as errorTemplate} from "./error.template";
 import { Block } from "../../utils/core/Block";
 import { ButtonBack } from "../../components/button-back/button-back";
 

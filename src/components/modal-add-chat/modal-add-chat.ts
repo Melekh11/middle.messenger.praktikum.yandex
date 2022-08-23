@@ -1,6 +1,6 @@
 import { TProps, Block } from "../../utils/core/Block";
 import "./modal-add-chat.less";
-import linkModal from "./modal-add-chat.pug";
+import {template as linkModal} from "./modal-add-chat.template";
 import { chatsController } from "../../controllers/chats-controller";
 import { userController } from "../../controllers/user-controller";
 import { Button } from "../button/button";

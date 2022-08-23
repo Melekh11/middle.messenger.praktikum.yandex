@@ -1,6 +1,6 @@
 import { Block } from "../../utils/core/Block";
 import "./submit-button.less";
-import btnSubTemplate from "./submit-button.pug";
+import {template  as btnSubTemplate} from "./submit-button.template";
 
 type SubmitButtonProps = {
   text: string;

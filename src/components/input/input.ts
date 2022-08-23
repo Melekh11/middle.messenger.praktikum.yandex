@@ -1,5 +1,5 @@
 import "./input.less";
-import inputTemplate from "./input.pug";
+import {template as inputTemplate} from "./input.template";
 import { v4 as makeUUID } from "uuid";
 import { checkError } from "../../helpers/checkers/handlerError";
 import { Block } from "../../utils/core/Block";
@@ -64,7 +64,7 @@ export class Input extends Block<InputProps> {
 
   render() {
     return this.compile(inputTemplate, {
-      ...this.props, // все в input.pug
+      ...this.props, // все в input.template.ts
       idInput: this.id,
     });
   }

@@ -19,6 +19,8 @@ export enum routs {
   errorPage = "/error",
 }
 
+console.log("starting app");
+
 // @ts-ignore какая-то странная ошибка Cannot redeclare exported variable 'MyRouter', в гугле ничего толкового не нашёл
 export const MyRouter = new Router();
 MyRouter.use(routs.signUpPage, SignUpPage)
@@ -35,5 +37,4 @@ MyRouter.use(routs.signUpPage, SignUpPage)
   .use(routs.changePasswordPage, ChangePasswordPage)
   .use(routs.errorPage, ErrorPage, { errorNumber: 404 })
   .start();
-
 checkAuth();

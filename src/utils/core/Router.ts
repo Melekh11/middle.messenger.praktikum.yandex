@@ -24,7 +24,7 @@ export class Router {
   }
 
   use(pathname: string, block: any, props?: TProps) {
-    const route = new Route(pathname, block, { ...props, rootQuery: "#root" });
+    const route = new Route(pathname, block, { ...props, rootQuery: "body" });
     (this.routes as Route[]).push(route);
     return this;
   }

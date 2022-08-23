@@ -1,5 +1,5 @@
 import { Block } from "../../utils/core/Block";
-import linkTemplate from "./routed-link.pug";
+import {template as linkTemplate} from "./routed-link.template";
 import { Router } from "../../utils/core/Router";
 
 type RoutedLinkProps = {

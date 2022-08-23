@@ -1,6 +1,6 @@
 import "./profile.less";
 import avatarDefault from "../../static/img/ava.png";
-import profileTemplate from "./profile.pug";
+import {template as profileTemplate} from "./profile.template";
 import { Block } from "../../utils/core/Block";
 import { ButtonBack } from "../../components/button-back/button-back";
 import { RoutedLink } from "../../components/routed-link/routed-link";

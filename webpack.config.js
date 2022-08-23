@@ -1,30 +1,24 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const PugPlugin = require('pug-plugin');
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+const CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin;
+const miniSVGDataURI = require('mini-svg-data-uri');
 
 module.exports = {
     mode: 'development',
     entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle-[hash].js',
+        filename: 'project-name.bundle.js'
     },
     resolve: {
         extensions: ['.ts', '.js', '.json'],
         fallback: {
             "fs": false,
-            "os": false
+            "os": false,
+            "path": require.resolve("path-browserify"),
+            "assert": require.resolve("assert/")
         },
-    },
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, 'app'),
-        },
-        compress: true,
-        port: 3000,
     },
     module: {
         rules: [
@@ -41,13 +35,22 @@ module.exports = {
                 exclude: /(node_modules)/
             },
             {
-                test: /\.(png|svg|jpg|jpeg)$/,
-                type: 'asset/resource',
+                test: /\.svg$/,
+                type: 'asset/inline',
+                    generator: {
+                         dataUrl(content) {
+                           content = content.toString();
+                           return miniSVGDataURI(content);
+                         }
+                   },
+                use: 'svgo-loader'
             },
             {
-                test: /.pug$/,
+                test: /\.(png|jpe?g)$/i,
                 use: [
-                    'pug-loader'
+                    {
+                        loader: 'file-loader',
+                    },
                 ],
             },
             {
@@ -58,33 +61,17 @@ module.exports = {
                     "css-loader",
                     "less-loader",
                 ],
-            },
+            }
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'style-[hash].css',
-        }),
-        new HtmlWebpackPlugin({
-            template: 'src/index.html',
-            filename: 'index.html',
-            minify: {
-                collapseWhitespace: true,
-                removeComments: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-            },
-        }),
         new CleanWebpackPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: '**/*',
-                    context: path.resolve(__dirname, 'src', 'assets'),
-                    to: './assets',
-                    noErrorOnMissing: true,
-                },
-            ],
+        new HtmlWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            process: 'process/browser',
         })
     ]
 };
+
+
+// node ./node_modules/.bin/webpack
