@@ -6,16 +6,12 @@
     "start": "webpack && node server.js",
     "build": "webpack",
     "linter": "node_modules/.bin/eslint .",
-    "test": "mocha --require ignore-styles"
+    "test": "mocha --require ignore-styles",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test && npm run linter"
-    }
-  },
   "devDependencies": {
     "@types/chai": "4.3.3",
     "@types/mocha": "^9.1.1",
