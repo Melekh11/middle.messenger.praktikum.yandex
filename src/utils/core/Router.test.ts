@@ -54,7 +54,7 @@ describe("Router", () => {
     router.start();
     router.go("/sign-in", true);
     router.go("/error", true);
-    expect(router.history?.length).to.eq(4);
+    expect(router.history?.length).to.eq(3);
   });
 
   it("Check current route", () => {
