@@ -52,19 +52,24 @@ export class Router {
     route.render();
   }
 
-  go(pathname: string) {
+  go(pathname: string, test?: boolean) {
     deleteCookie("lastRoute");
     setCookie("lastRoute", pathname);
-    if (
-      store.getState().user ||
-      pathname === routs.signUpPage ||
-      pathname === routs.errorPage
-    ) {
+    if (test) {
       (this.history as History).pushState({}, "", pathname);
       this._onRoute(pathname);
     } else {
-      (this.history as History).pushState({}, "", routs.signInPage);
-      this._onRoute(routs.signInPage);
+      if (
+        store.getState().user ||
+        pathname === routs.signUpPage ||
+        pathname === routs.errorPage
+      ) {
+        (this.history as History).pushState({}, "", pathname);
+        this._onRoute(pathname);
+      } else {
+        (this.history as History).pushState({}, "", routs.signInPage);
+        this._onRoute(routs.signInPage);
+      }
     }
   }
 
