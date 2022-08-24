@@ -6,7 +6,11 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "dist")));
 
-app.get("/(.*?)/", function (req, res) {
+app.use("/*", (req, res) => {
+  res.redirect("/");
+});
+
+app.get("/", function (req, res) {
   res.setHeader("Content-Type", "application/json");
   res.status(200).sendFile(__dirname + "/src/index.html");
 });
