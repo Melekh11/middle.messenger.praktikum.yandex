@@ -1,5 +1,5 @@
 import "./input.less";
-import {template as inputTemplate} from "./input.template";
+import { template as inputTemplate } from "./input.template";
 import { v4 as makeUUID } from "uuid";
 import { checkError } from "../../helpers/checkers/handlerError";
 import { Block } from "../../utils/core/Block";

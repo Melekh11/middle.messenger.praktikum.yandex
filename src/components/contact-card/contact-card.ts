@@ -1,6 +1,6 @@
 import { Block } from "../../utils/core/Block";
 import "./contact-card.less";
-import {template as contCardTemplate} from "./contact-card.template";
+import { template as contCardTemplate } from "./contact-card.template";
 import defaultAvaChat from "../../static/img/new-message.png";
 
 type ContactCardProps = {

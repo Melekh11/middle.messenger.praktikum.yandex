@@ -1,6 +1,6 @@
 import { TProps, Block } from "../../utils/core/Block";
 import "./modal-add-chat.less";
-import {template as linkModal} from "./modal-add-chat.template";
+import { template as linkModal } from "./modal-add-chat.template";
 import { chatsController } from "../../controllers/chats-controller";
 import { userController } from "../../controllers/user-controller";
 import { Button } from "../button/button";
@@ -76,7 +76,7 @@ export class ModalAddChat extends Block<ModalAddChatProps> {
                         // @ts-ignore как это сделать чтобы ts не ругался не понимаю
                         form.append(
                           "avatar",
-                            // @ts-ignore
+                          // @ts-ignore
                           document.querySelector("#ava-chat")?.files[0]
                         );
                         form.append("chatId", chatId);

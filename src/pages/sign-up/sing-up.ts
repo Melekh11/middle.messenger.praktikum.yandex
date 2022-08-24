@@ -3,7 +3,7 @@ import { Input } from "../../components/input/input";
 import { ButtonBack } from "../../components/button-back/button-back";
 import { SubmitButton } from "../../components/submit-button/submit-button";
 import "./sign-up.less";
-import {template as singUpTemplate} from "./sign-up.template";
+import { template as singUpTemplate } from "./sign-up.template";
 import { authController } from "../../controllers/auth-controller";
 
 function shortInputInit(

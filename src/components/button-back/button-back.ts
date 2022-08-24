@@ -1,5 +1,5 @@
 import "./button-back.less";
-import {template as btnBackTemplate} from "./button-back.template";
+import { template as btnBackTemplate } from "./button-back.template";
 import { Block } from "../../utils/core/Block";
 import { authController } from "../../controllers/auth-controller";
 import { MyRouter, routs } from "../../index";

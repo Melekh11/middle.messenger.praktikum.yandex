@@ -3,7 +3,7 @@ import { ContactCard } from "../../components/contact-card/contact-card";
 import { compile } from "pug";
 import { DialogField } from "../../components/dialog-field/dialog-field";
 import { TProps } from "../../utils/core/Block";
-import {template as chatsTemplate} from "./chats.template";
+import { template as chatsTemplate } from "./chats.template";
 import { store } from "../../utils/core/Store";
 import { connect } from "../../utils/core/HOC";
 import { Button } from "../../components/button/button";

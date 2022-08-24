@@ -1,6 +1,6 @@
 import { Input } from "../input/input";
 import "./dialog-field.less";
-import {template as dialogTemplate} from "./dialog-field.template";
+import { template as dialogTemplate } from "./dialog-field.template";
 import { Block } from "../../utils/core/Block";
 import { connect } from "../../utils/core/HOC";
 import { Button } from "../button/button";

@@ -1,4 +1,4 @@
-import {template as btnTemplate} from "./button.template";
+import { template as btnTemplate } from "./button.template";
 import { Block } from "../../utils/core/Block";
 
 type ButtonProps = {

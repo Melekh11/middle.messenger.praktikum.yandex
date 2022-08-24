@@ -1,1 +1,1 @@
-export const template = 'a(class=className) #{linkText}'
+export const template = "a(class=className) #{linkText}";

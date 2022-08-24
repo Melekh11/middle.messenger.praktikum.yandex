@@ -1,5 +1,5 @@
 import "./change-profile.less";
-import {template as changeProfTemplate} from "./change-profile.template";
+import { template as changeProfTemplate } from "./change-profile.template";
 import { Block } from "../../utils/core/Block";
 import { Input } from "../../components/input/input";
 import { SubmitButton } from "../../components/submit-button/submit-button";
