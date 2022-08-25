@@ -48,18 +48,18 @@ document = jsdom.window.document;
 describe("Router", () => {
   console.log("testing router");
   const router = new Router();
-  router.use("/sign-in", Page1).use("/error", Page2);
+  router.use("/sign-in", Page1, false).use("/error", Page2, false);
 
   it("Check adding", () => {
     router.start();
-    router.go("/sign-in", true);
-    router.go("/error", true);
+    router.go("/sign-in");
+    router.go("/error");
     expect(router.history?.length).to.eq(3);
   });
 
   it("Check current route", () => {
     router.start();
-    router.go("/error", true);
+    router.go("/error");
     expect(router.currentRoute?.pathname).to.eq("/error");
   });
 });

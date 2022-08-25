@@ -9,4 +9,4 @@ export const template =
   '            div(class="column-group")\n' +
   "                != submitBtn\n" +
   "                != createAc\n" +
-  '    != buttonBack"\n';
+  '    != buttonBack\n';

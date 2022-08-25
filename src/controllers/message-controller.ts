@@ -18,13 +18,6 @@ export class MessageController {
 
     this.socket.addEventListener("open", () => {
       console.log("Соединение установлено");
-
-      this.socket.send(
-        JSON.stringify({
-          content: `первое сообщение ${store.getState().user.first_name}! `,
-          type: "message",
-        })
-      );
     });
 
     this.socket.addEventListener("close", (event) => {

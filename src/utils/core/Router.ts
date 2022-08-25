@@ -23,8 +23,8 @@ export class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: any, props?: TProps) {
-    const route = new Route(pathname, block, { ...props, rootQuery: "body" });
+  use(pathname: string, block: any, isPrivate: boolean, props?: TProps) {
+    const route = new Route(pathname, block, { ...props, rootQuery: "body", isPrivate: isPrivate});
     (this.routes as Route[]).push(route);
     return this;
   }
@@ -52,25 +52,32 @@ export class Router {
     route.render();
   }
 
-  go(pathname: string, test?: boolean) {
+  go(pathname: string) {
     deleteCookie("lastRoute");
     setCookie("lastRoute", pathname);
-    if (test) {
+    const route = this.getRoute(pathname);
+    if (!route){
+      return;
+    }
+    if ((route.isPrivate && store.getState().user) || !route.isPrivate) {
       (this.history as History).pushState({}, "", pathname);
       this._onRoute(pathname);
-    } else {
-      if (
-        store.getState().user ||
-        pathname === routs.signUpPage ||
-        pathname === routs.errorPage
-      ) {
-        (this.history as History).pushState({}, "", pathname);
-        this._onRoute(pathname);
-      } else {
-        (this.history as History).pushState({}, "", routs.signInPage);
-        this._onRoute(routs.signInPage);
-      }
+    } else if (route.isPrivate && !store.getState().user) {
+      (this.history as History).pushState({}, "", routs.signInPage);
+      this._onRoute(routs.signInPage);
     }
+      // if (
+      //   store.getState().user ||
+      //   pathname === routs.signUpPage ||
+      //   pathname === routs.errorPage
+      // ) {
+      //   (this.history as History).pushState({}, "", pathname);
+      //   this._onRoute(pathname);
+      // } else {
+      //   (this.history as History).pushState({}, "", routs.signInPage);
+      //   this._onRoute(routs.signInPage);
+      // }
+    // }
   }
 
   back() {

@@ -6,13 +6,13 @@ function isEqual(lo: unknown, ro: unknown): boolean {
 }
 
 export class Route {
-  public pathname: string;
+  private _pathname: string;
   private _props: TProps;
   private _block: any;
   private _blockClass: any;
 
   constructor(pathname: string, view: any, props: TProps) {
-    this.pathname = pathname;
+    this._pathname = pathname;
     this._blockClass = view;
     this._block = null;
     this._props = props;
@@ -20,7 +20,7 @@ export class Route {
 
   navigate(pathname: string) {
     if (this.match(pathname)) {
-      this.pathname = pathname;
+      this._pathname = pathname;
       this.render();
     }
   }
@@ -45,5 +45,13 @@ export class Route {
     }
     this._block.show();
     render(this._props.rootQuery, this._block);
+  }
+
+  get pathname() {
+    return this._pathname;
+  }
+
+  get isPrivate() {
+    return this._props.isPrivate;
   }
 }
