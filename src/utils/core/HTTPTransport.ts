@@ -28,7 +28,7 @@ function queryStringify(data: Record<string, string>) {
 
 class HTTPTransport {
   get(url: string, options: OptionsWithoutMethod = {}) {
-    console.log("http GET");
+    console.log("http GET", options);
     return this.request(url, { ...options, method: Methods.GET });
   }
 
@@ -115,5 +115,4 @@ function fetchWithRetry(url: string, options: Record<string, any>): unknown {
     .catch(onError);
 }
 
-export default HTTPTransport;
-export { fetchWithRetry };
+export { HTTPTransport, fetchWithRetry };

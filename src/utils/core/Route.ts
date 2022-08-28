@@ -32,7 +32,7 @@ export class Route {
   }
 
   match(pathname: string) {
-    return isEqual(pathname, this._pathname);
+    return isEqual(pathname, this.pathname);
   }
 
   render() {
@@ -45,5 +45,13 @@ export class Route {
     }
     this._block.show();
     render(this._props.rootQuery, this._block);
+  }
+
+  get pathname() {
+    return this._pathname;
+  }
+
+  get isPrivate() {
+    return this._props.isPrivate;
   }
 }

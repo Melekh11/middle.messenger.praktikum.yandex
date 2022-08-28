@@ -2,7 +2,7 @@ import { Block } from "../../utils/core/Block";
 import { Input } from "../../components/input/input";
 import { SubmitButton } from "../../components/submit-button/submit-button";
 import { ButtonBack } from "../../components/button-back/button-back";
-import changeProfTemplate from "./change-password.pug";
+import { template as changeProfTemplate } from "./change-password.template";
 import "./change-password.less";
 import { userController } from "../../controllers/user-controller";
 import avatarDefault from "../../static/img/ava.png";

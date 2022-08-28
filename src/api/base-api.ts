@@ -1,4 +1,4 @@
-import HTTPTransport from "../utils/core/HTTPTransport";
+import { HTTPTransport } from "../utils/core/HTTPTransport";
 
 interface IHTTPTransport {
   path: string;

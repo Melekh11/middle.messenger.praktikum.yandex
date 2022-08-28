@@ -1,7 +1,7 @@
 import { Block } from "../../utils/core/Block";
 import "./contact-card.less";
-import contCardTemplate from "./contact-card.pug";
-import defaultAvaChat from "../../static/img/default-ava-chat.svg";
+import { template as contCardTemplate } from "./contact-card.template";
+import defaultAvaChat from "../../static/img/new-message.png";
 
 type ContactCardProps = {
   avatar?: string;

@@ -1,4 +1,4 @@
-import btnTemplate from "./button.pug";
+import { template as btnTemplate } from "./button.template";
 import { Block } from "../../utils/core/Block";
 
 type ButtonProps = {

@@ -1,5 +1,5 @@
 import "./error.less";
-import errorTemplate from "./error.pug";
+import { template as errorTemplate } from "./error.template";
 import { Block } from "../../utils/core/Block";
 import { ButtonBack } from "../../components/button-back/button-back";
 
@@ -20,7 +20,7 @@ export class ErrorPage extends Block<ErrorProps> {
     super("div", {
       ...props,
       errorName: errorName,
-      buttonBack: new ButtonBack({}),
+      buttonBack: new ButtonBack(),
     });
   }
 
